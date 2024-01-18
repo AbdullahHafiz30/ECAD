@@ -3,6 +3,7 @@ $errors = array();
 session_start();
 include 'C:\MAMP\htdocs\ECAD\DataBase.php';
 
+// my name is mohammed
 
 if (isset($_POST['submit'])) {
     $FirstName = mysqli_real_escape_string($conn, $_POST['First_Name']);
