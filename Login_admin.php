@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); //hello my name abdullah
 $errors = array();
 
 if (isset($_POST['login'])) {
