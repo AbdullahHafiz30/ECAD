@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errors = array();
 
 if (isset($_POST['login'])) {
@@ -12,31 +13,21 @@ if (isset($_POST['login'])) {
     if (count($errors) === 0) {
         include 'C:\MAMP\htdocs\ECAD\DataBase.php';
 
-        $consumer_check_query = "SELECT * FROM admin WHERE Admin_ID='$Admin_ID' LIMIT 1";
-        $result_consumer = mysqli_query($conn, $consumer_check_query);
+        $stmt = $conn->prepare("SELECT * FROM admin WHERE Admin_ID = ?");
+        $stmt->bind_param("s", $Admin_ID);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if (mysqli_num_rows($result_consumer) > 0) {
-            $consumer_row = mysqli_fetch_assoc($result_consumer);
+        if ($result->num_rows > 0) {
+            $admin_row = $result->fetch_assoc();
+            $stored_password = $admin_row['Password'];
 
-            $password_check_query = "SELECT * FROM admin WHERE Password='$Admin_ID' LIMIT 1";
-            $result_password = mysqli_query($conn, $password_check_query);
-
-            if (mysqli_num_rows($result_password) > 0) {
-                $password_row = mysqli_fetch_assoc($result_password);
-                $stored_password = $password_row['Password'];
-
-                if (password_verify($password, $stored_password)) {
-                    session_start();
-                    $_SESSION['Admin_ID'] = $Admin_ID;
-                    
-
-                    
-                    exit();
-                } else {
-                    array_push($errors, "Invalid password");
-                }
+            if (password_verify($password, $stored_password)) {
+                $_SESSION['Admin_ID'] = $Admin_ID;
+                header("Location: [Your Dashboard Page]"); // Redirect to a specific page
+                exit();
             } else {
-                array_push($errors, "Password not found");
+                array_push($errors, "Invalid password");
             }
         } else {
             array_push($errors, "ID not found");
