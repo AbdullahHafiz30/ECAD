@@ -1,7 +1,7 @@
 <?php
 $errors = array();
 session_start();
-include 'C:\MAMP\htdocs\ECAD\DataBase.php';
+include 'DataBase.php';
 
 // my name is mohammed
 
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
         $password_hash = password_hash($password1, PASSWORD_DEFAULT);
 
         // Prepare and execute the INSERT query
-        $sql_admin = "INSERT INTO admin (Admin_ID,First_Name, Second_Name, Last_Name, UserName, Email, Phone_number, Password) VALUES ('$Admin_ID','$FirstName', '$SecondName', '$LastName','$UserName','$Email', '$phone', '$password1')";
+        $sql_admin = "INSERT INTO admin (Admin_ID,First_Name, Second_Name, Last_Name, UserName, Email, Phone_number, Password) VALUES ('$Admin_ID','$FirstName', '$SecondName', '$LastName','$UserName','$Email', '$phone', '$password_hash')";
         mysqli_query($conn, $sql_admin);
         echo $sql_admin;
         if (mysqli_query($conn, $sql_admin)) {
@@ -98,7 +98,7 @@ if (isset($_POST['submit'])) {
             <br>
 
 
-            <br><input type="butten" value="Sign Up" name='submit'>
+            <br><br><input type="submit" value="Sign Up" name='submit'>
             <P>Already Signed up? <a href="http://localhost/ECAD/Login_admin.php">Login here</a></P>
 
         </form>

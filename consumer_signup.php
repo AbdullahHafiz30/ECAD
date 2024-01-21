@@ -1,7 +1,7 @@
 <?php
 $errors = array();
 session_start();
-include 'C:\MAMP\htdocs\ECAD\DataBase.php';
+include 'DataBase.php';
 
 if (isset($_POST['submit'])) {
     $FirstName = mysqli_real_escape_string($conn, $_POST['First_Name']);
@@ -112,7 +112,7 @@ if (isset($_POST['submit'])) {
                 <input type="text" name="City" placeholder="City">
             </div>
 
-            <br><br><input type="butten" value="Sign Up" name='submit'>
+            <br><br><input type="submit" value="Sign Up" name='submit'>
             <P>Already Signed up? <a href="http://localhost/ECAD/Login_consumer.php">Login here</a></P>
         </form>
     </div>
