@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             <br><br>
 
             <input type="submit" value="Login" class="login" name="login">
-            <p>Don't have an account? <a href="http://localhost/ECAD/consumer_signup.php">Signup here</a></p>
+            <p>Don't have an account ?  <a href="http://localhost/ECAD/consumer_signup.php">Signup here</a></p>
         </form>
     </div>
 </body>

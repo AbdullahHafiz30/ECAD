@@ -50,7 +50,7 @@ echo "Admin ID: " . $Admin_ID . "<br>";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style.css">
     
 
     <title>Admin Login</title>
@@ -60,25 +60,15 @@ echo "Admin ID: " . $Admin_ID . "<br>";
 
     <div class="Login">
         <form action="" method="POST">
-            
                 <h1>Sign in</h1>
-                
-            
-
-           
                 <label for="Admin_ID">ID</label><br>
                 <input type="text" name="ID" id="Admin_ID" placeholder="ID">
-            
-            
                 <label>Password</label><br>
                 <input type="password" name="Password" id="Password" placeholder="Password">
-            <br>
-            <br><br>
-            
+                <br><br>
                 <input type="submit" value="Login" class="login" name="login">
-                <P>Don't have an account  ? <a href="http://localhost/ECAD/admin_signup.php">Signup here</a></P>
+                <P>Don't have an account ?  <a href="http://localhost/ECAD/admin_signup.php">Signup here</a></P>
                 <!-- Add your Signup button or link here -->
-            
             <!-- <?php
             if (count($errors) > 0) {
                 foreach ($errors as $error) {

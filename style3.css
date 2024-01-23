@@ -27,8 +27,11 @@ h1 {
 }
 
 form {
-    width: 850px;
-    margin-left: 25px;
+    display: block;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
     
 }
 
@@ -57,16 +60,21 @@ form input {
     outline: none
 }
 
-form [type="button"] {
+form [type="submit"] {
     width: 820px;
     height: 45px;
-    margin-top: 10px;
     border: none;
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
     font-size: large;
     background-color: lightgreen;
+    cursor: pointer;
 }
+
+form [type="submit"]:hover {
+    background-color: darkgreen;
+}
+
 p{
     text-align: center;
     font-size: 17px;
