@@ -1,30 +1,36 @@
 <?php
-session_start(); //hello my name abdullah
 $errors = array();
+session_start(); //hello my name abdullah
 
-if (isset($_POST['login'])) {
-    $Admin_ID = strip_tags($_POST['Admin_ID']);
-    $password = strip_tags($_POST['Password']);
 
-    if (empty($Admin_ID) || empty($password)) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    $Admin_ID = $_POST['ID'];
+    $apassword = $_POST['Password'];  // Corrected this line
+       
+echo "Admin ID: " . $Admin_ID . "<br>";   
+
+    if (empty($Admin_ID) || empty($apassword)) {
+        
         array_push($errors, "Admin_ID and password are required");
     }
 
     if (count($errors) === 0) {
-        include 'C:\MAMP\htdocs\ECAD\DataBase.php';
+        include 'DataBase.php';  // Consider a relative path
 
-        $stmt = $conn->prepare("SELECT * FROM admin WHERE Admin_ID = ?");
+        // Prepared statement recommended here for security
+        $admin_check_query = "SELECT * FROM admin WHERE Admin_ID=? LIMIT 1";
+        $stmt = $conn->prepare($admin_check_query);
         $stmt->bind_param("s", $Admin_ID);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result_admin = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            $admin_row = $result->fetch_assoc();
+        if ($result_admin->num_rows > 0) {
+            $admin_row = $result_admin->fetch_assoc();
             $stored_password = $admin_row['Password'];
 
-            if (password_verify($password, $stored_password)) {
+            if (password_verify($apassword, $stored_password)) {
                 $_SESSION['Admin_ID'] = $Admin_ID;
-                header("Location: [Your Dashboard Page]"); // Redirect to a specific page
+                header("Location: http://localhost:8888/ECAD-Clone/ECAD/homepage.php");
                 exit();
             } else {
                 array_push($errors, "Invalid password");
@@ -70,7 +76,7 @@ if (isset($_POST['login'])) {
             <br><br>
             
                 <input type="submit" value="Login" class="login" name="login">
-                <P>Already Signed up? <a href="http://localhost/ECAD/admin_signup.php">Login here</a></P>
+                <P>Don't have an account  ? <a href="http://localhost/ECAD/admin_signup.php">Signup here</a></P>
                 <!-- Add your Signup button or link here -->
             
             <!-- <?php

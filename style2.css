@@ -57,7 +57,7 @@ form input {
     outline: none
 }
 
-form [type="butten"] {
+form [type="button"] {
     width: 820px;
     height: 45px;
     margin-top: 20px;

@@ -1,34 +1,41 @@
 <?php
 $errors = array();
 session_start();
-include 'DataBase.php';
 
-if (isset($_POST['Login'])) {
-    $Consumer_ID = strip_tags($_POST['Consumer_ID']);
-    $password = strip_tags($_POST['Password']);
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    $Consumer_ID = 910955 	;
+    $cpassword = 123456789;
 
-    if (empty($Consumer_ID) || empty($password)) {
+    echo "Consumer ID: " . $Consumer_ID . "<br>";
+    echo "Password: " . $cpassword . "<br>";
+
+    if (empty($Consumer_ID) || empty($cpassword)) {
         array_push($errors, "Consumer_ID and password are required");
     }
 
     if (count($errors) === 0) {
-        $consumer_check_query = "SELECT * FROM consumer WHERE Consumer_ID ='$Consumer_ID' LIMIT 1";
-        $result_consumer = mysqli_query($conn, $consumer_check_query);
+        include 'DataBase.php';  // Consider a relative path
 
-        if (mysqli_num_rows($result_consumer) > 0) {
-            $consumer_row = mysqli_fetch_assoc($result_consumer);
+        // Prepared statement recommended here for security
+        $consumer_check_query = "SELECT * FROM consumer WHERE Consumer_ID=? LIMIT 1";
+        $stmt = $conn->prepare($consumer_check_query);
+        $stmt->bind_param("s", $Consumer_ID);
+        $stmt->execute();
+        $result_consumer = $stmt->get_result();
+
+        if ($result_consumer->num_rows > 0) {
+            $consumer_row = $result_consumer->fetch_assoc();
             $stored_password = $consumer_row['Password'];
-            
-            if (password_verify($password, $stored_password)) {
-                $_SESSION['Consumer_ID'] = $consumer_row['Consumer_ID'];
 
-                header("Location: homepage.php");
+            if (password_verify($cpassword, $stored_password)) {
+                $_SESSION['Consumer_ID'] = $Consumer_ID;
+                header("Location: http://localhost:8888/ECAD-Clone/ECAD/homepage.php");
                 exit();
             } else {
                 array_push($errors, "Invalid password");
             }
         } else {
-            array_push($errors, "Invalid credentials");
+            array_push($errors, "Consumer ID not found");
         }
 
         mysqli_close($conn);
@@ -42,7 +49,7 @@ if (isset($_POST['Login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style1.css">
     <title>Consumer Login</title>
 </head>
 
@@ -59,18 +66,8 @@ if (isset($_POST['Login'])) {
             <input type="password" name="Password" id="Password" placeholder="Password">
             <br><br>
 
-            <button type="butten">Login</button>
-            <P>Don't have an account? <a href="http://localhost/ECAD/consumer_signup.php">Signup here</a></P>
-
-            <?php
-            // if (count($errors) > 0) {
-            //     echo '<div class="error">';
-            //     foreach ($errors as $error) {
-            //         echo $error . '<br>';
-            //     }
-            //     echo '</div>';
-            // }
-            ?>
+            <input type="submit" value="Login" class="login" name="login">
+            <p>Don't have an account? <a href="http://localhost/ECAD/consumer_signup.php">Signup here</a></p>
         </form>
     </div>
 </body>
