@@ -3,7 +3,7 @@ $errors = array();
 session_start();
 include 'DataBase.php';
 
-// my name is abdullah
+// my name is abdullah hafiz
 
 if (isset($_POST['submit'])) {
     $FirstName = mysqli_real_escape_string($conn, $_POST['First_Name']);
