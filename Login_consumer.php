@@ -3,7 +3,7 @@ $errors = array();
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    $Consumer_ID = 910955 	;
+    $Consumer_ID = 910955;
     $cpassword = 123456789;
 
     echo "Consumer ID: " . $Consumer_ID . "<br>";
@@ -50,14 +50,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style1.css">
-    <title>Consumer Login</title>
+    <link rel="stylesheet" href="navbar.css">
+    <title>Consumer Sign In</title>
 </head>
 
 <body>
+    <header>
+        <div class="mark">
+            E.C.A.D
+        </div>
+
+        <nav class="navigation">
+            <button onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="home">Home</button>
+            <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
+
+            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
+                class="Sbtnlgoin">Consumer</button>
+        </nav>
+    </header>
 
     <div class="Login">
         <form action="Login_consumer.php" method="POST">
-            <h1>Sign in</h1>
+            <h1>Sign In</h1>
 
             <label for="Consumer_ID">ID</label><br>
             <input type="text" name="Consumer_ID" id="Consumer_ID" placeholder="ID">
@@ -67,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             <br><br>
 
             <input type="submit" value="Login" class="login" name="login">
-            <p>Don't have an account ?  <a href="http://localhost/ECAD/consumer_signup.php">Signup here</a></p>
+            <p>Don't have an account ? <a href="http://localhost/ECAD/consumer_signup.php">Signup here</a></p>
         </form>
     </div>
 </body>

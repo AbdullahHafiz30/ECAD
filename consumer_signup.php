@@ -76,10 +76,25 @@ if (isset($_POST['submit'])) {
     <meta name="Keywords" content="energy consumption, anomaly detection">
     <title>E.C.A.D Consumer Signup page</title>
     <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="navbar.css">
 
 </head>
 
 <body>
+    <header>
+        <div class="mark">
+            E.C.A.D
+        </div>
+
+        <nav class="navigation">
+            <button onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="home">Home</button>
+            <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
+
+            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
+                class="Sbtnlgoin">Consumer</button>
+        </nav>
+    </header>
+
     <div class="Signup">
         <h1>Consumer Sign Up</h1>
         <form action="consumer_signup.php" method="POST">
