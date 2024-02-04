@@ -6,11 +6,11 @@ session_start(); //hello my name abdullah
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $Admin_ID = $_POST['ID'];
     $apassword = $_POST['Password'];  // Corrected this line
-       
-echo "Admin ID: " . $Admin_ID . "<br>";   
+
+    echo "Admin ID: " . $Admin_ID . "<br>";
 
     if (empty($Admin_ID) || empty($apassword)) {
-        
+
         array_push($errors, "Admin_ID and password are required");
     }
 
@@ -51,24 +51,36 @@ echo "Admin ID: " . $Admin_ID . "<br>";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
-
-    <title>Admin Login</title>
+    <link rel="stylesheet" href="navbar.css">
+    <title>Admin Sign In</title>
 </head>
 
 <body>
+    <header>
+        <div class="mark">
+            E.C.A.D
+        </div>
+
+        <nav class="navigation">
+            <button onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="home">Home</button>
+            <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
+
+            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
+                class="Sbtnlgoin">Consumer</button>
+        </nav>
+    </header>
 
     <div class="Login">
         <form action="" method="POST">
-                <h1>Sign in</h1>
-                <label for="Admin_ID">ID</label><br>
-                <input type="text" name="ID" id="Admin_ID" placeholder="ID">
-                <label>Password</label><br>
-                <input type="password" name="Password" id="Password" placeholder="Password">
-                <br><br>
-                <input type="submit" value="Login" class="login" name="login">
-                <P>Don't have an account ?  <a href="http://localhost/ECAD/admin_signup.php">Signup here</a></P>
-                <!-- Add your Signup button or link here -->
+            <h1>Sign in</h1>
+            <label for="Admin_ID">ID</label><br>
+            <input type="text" name="ID" id="Admin_ID" placeholder="ID">
+            <label>Password</label><br>
+            <input type="password" name="Password" id="Password" placeholder="Password">
+            <br><br>
+            <input type="submit" value="Login" class="login" name="login">
+            <P>Don't have an account ? <a href="http://localhost/ECAD/admin_signup.php">Signup here</a></P>
+            <!-- Add your Signup button or link here -->
             <!-- <?php
             if (count($errors) > 0) {
                 foreach ($errors as $error) {

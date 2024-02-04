@@ -3,8 +3,6 @@ $errors = array();
 session_start();
 include 'DataBase.php';
 
-// my name is abdullah
-
 if (isset($_POST['submit'])) {
     $FirstName = mysqli_real_escape_string($conn, $_POST['First_Name']);
     $SecondName = mysqli_real_escape_string($conn, $_POST['Second_Name']);
@@ -62,9 +60,23 @@ if (isset($_POST['submit'])) {
     <meta name="Keywords" content="energy consumption , anomaly detection">
     <title>E.C.A.D Admin Signup page</title>
     <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="navbar.css">
 </head>
 
 <body>
+    <header>
+        <div class="mark">
+            E.C.A.D
+        </div>
+
+        <nav class="navigation">
+            <button onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="home">Home</button>
+            <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
+
+            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
+                class="Sbtnlgoin">Consumer</button>
+        </nav>
+    </header>
 
     <div class="Signup">
         <h1>Admin Sign Up</h1>
