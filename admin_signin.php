@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $Admin_ID = $_POST['ID'];
     $apassword = $_POST['Password'];  // Corrected this line
 
-    echo "Admin ID: " . $Admin_ID . "<br>";
 
     if (empty($Admin_ID) || empty($apassword)) {
 

@@ -16,9 +16,8 @@ body {
     backdrop-filter: blur(30px);
     border: 1px solid lawngreen;
     width: 900px;
-    height: 760px;
+    height: auto;
     border-radius: 6px;
-    margin: auto;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     position: relative;
     color: aliceblue;
@@ -47,12 +46,11 @@ form label {
 
 .inp input {
     width: 32%;
-    padding: 7px;
     border: none;
     border: 1px solid lightgreen;
     border-radius: 6px;
     outline: none;
-    margin-top: 5px;
+    margin-bottom: 20px;
 }
 
 form input {
@@ -69,7 +67,7 @@ form [type="submit"] {
     height: 45px;
     border: none;
     text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: large;
     background-color: lightgreen;
     cursor: pointer;
@@ -82,4 +80,5 @@ form [type="submit"]:hover {
 p{
     text-align: center;
     font-size: 17px;
+    padding-top: 10px;
 }

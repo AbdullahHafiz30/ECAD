@@ -13,14 +13,40 @@ if (isset($_POST['submit'])) {
     $Email = mysqli_real_escape_string($conn, $_POST['Email']);
     $password1 = mysqli_real_escape_string($conn, $_POST['Password']);
 
-    if (empty($FirstName) || empty($SecondName) || empty($LastName) || empty($Email) || empty($UserName) || empty($password1) || empty($phone)) {
-        array_push($errors, "All fields are required");
+    if (empty($FirstName)) {
+        array_push($errors, "First Name is required");
     }
-    if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+    
+    if (empty($SecondName)) {
+        array_push($errors, "Second Name is required");
+    }
+    
+    if (empty($LastName)) {
+        array_push($errors, "Last Name is required");
+    }
+    
+    if (empty($Email)) {
+        array_push($errors, "Email is required");
+    } elseif (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
         array_push($errors, "Email is not valid");
     }
-    if (strlen($password1) < 8) {
+    
+    if (empty($UserName)) {
+        array_push($errors, "Username is required");
+    }
+    
+    if (empty($password1)) {
+        array_push($errors, "Password is required");
+    } elseif (strlen($password1) < 8) {
         array_push($errors, "Password must be at least 8 characters long");
+    }
+    
+    if (empty($phone)) {
+        array_push($errors, "Phone is required");
+    }
+
+    if (empty($Admin_ID)) {
+        array_push($errors, "ID is required");
     }
 
     // Check if user with the same email or Admin_ID already exists
@@ -31,20 +57,18 @@ if (isset($_POST['submit'])) {
 
     if (mysqli_num_rows($result_email) > 0) {
         array_push($errors, "Email already exists");
-    }
-    if (mysqli_num_rows($result_ID) > 0) {
+    }elseif(mysqli_num_rows($result_ID) > 0) {
         array_push($errors, "Admin_ID already exists");
-    } else {
+    } elseif(!empty($FirstName) && !empty($SecondName) && !empty($LastName) && !empty($Email) && !empty($UserName) && !empty($password1) && !empty($phone) && !empty($Admin_ID)){
         $password_hash = password_hash($password1, PASSWORD_DEFAULT);
 
         // Prepare and execute the INSERT query
         $sql_admin = "INSERT INTO admin (Admin_ID,First_Name, Second_Name, Last_Name, UserName, Email, Phone_number, Password) VALUES ('$Admin_ID','$FirstName', '$SecondName', '$LastName','$UserName','$Email', '$phone', '$password_hash')";
         mysqli_query($conn, $sql_admin);
-        echo $sql_admin;
         if (mysqli_query($conn, $sql_admin)) {
             echo "Record inserted successfully";
         } else {
-            echo "Error: " . $sql_admin . "<br>" . mysqli_error($conn);
+            //echo "Error: " . $sql_admin . "<br>" . mysqli_error($conn);
         }
 
         mysqli_close($conn);
@@ -111,7 +135,7 @@ if (isset($_POST['submit'])) {
 
 
             <br><br><input type="submit" value="Sign Up" name='submit'>
-            <P>Already Signed up? <a href="http://localhost/ECAD/Login_admin.php">Login here</a></P>
+            <P>Already Signed up? <a href="http://localhost/ECAD/admin_signin.php">Login here</a></P>
 
         </form>
     </div>

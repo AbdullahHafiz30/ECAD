@@ -3,23 +3,21 @@ $errors = array();
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    $Consumer_ID = 910955;
-    $cpassword = 123456789;
+    $UserName = $_POST['UserName'];
+    $cpassword = $_POST['Password'];
 
-    echo "Consumer ID: " . $Consumer_ID . "<br>";
-    echo "Password: " . $cpassword . "<br>";
 
-    if (empty($Consumer_ID) || empty($cpassword)) {
-        array_push($errors, "Consumer_ID and password are required");
+    if (empty($UserName) || empty($cpassword)) {
+        array_push($errors, "User Name and password are required");
     }
 
     if (count($errors) === 0) {
         include 'DataBase.php';  // Consider a relative path
 
         // Prepared statement recommended here for security
-        $consumer_check_query = "SELECT * FROM consumer WHERE Consumer_ID=? LIMIT 1";
+        $consumer_check_query = "SELECT * FROM consumer WHERE UserName=? LIMIT 1";
         $stmt = $conn->prepare($consumer_check_query);
-        $stmt->bind_param("s", $Consumer_ID);
+        $stmt->bind_param("s", $UserName);
         $stmt->execute();
         $result_consumer = $stmt->get_result();
 
@@ -28,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             $stored_password = $consumer_row['Password'];
 
             if (password_verify($cpassword, $stored_password)) {
-                $_SESSION['Consumer_ID'] = $Consumer_ID;
-                header("Location: http://localhost/ecad/consumer_dashboard.php");
+                $_SESSION['UserName'] = $UserName;
+                header("Location: http://localhost/ECAD/consumer_dashboard.php");
                 exit();
             } else {
                 array_push($errors, "Invalid password");
@@ -70,11 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     </header>
 
     <div class="Login">
-        <form action="Login_consumer.php" method="POST">
+        <form action="consumer_signin.php" method="POST">
             <h1>Sign In</h1>
 
-            <label for="Consumer_ID">ID</label><br>
-            <input type="text" name="Consumer_ID" id="Consumer_ID" placeholder="ID">
+            <label for="UserName">User Name</label><br>
+            <input type="text" name="UserName" id="UserName" placeholder="User Name">
 
             <label>Password</label><br>
             <input type="password" name="Password" id="Password" placeholder="Password">
@@ -82,6 +80,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
             <input type="submit" value="Login" class="login" name="login">
             <p>Don't have an account ? <a href="http://localhost/ECAD/consumer_signup.php">Signup here</a></p>
+            <?php
+            if (count($errors) > 0) {
+                foreach ($errors as $error) {
+                    echo "<div class='printErrors'>$error</div>";
+                }
+            }
+            ?>
         </form>
     </div>
 </body>

@@ -33,7 +33,7 @@
         </div>
 
         <!-- Admin Login Card -->
-        <div class="card" onclick="window.location.href='//localhost/ECAD/Login_consumer.php'">
+        <div class="card" onclick="window.location.href='//localhost/ECAD/consumer_signin.php'">
             <h2>Consumer  Sign In</h2>
             <!-- Add your login form here -->
         </div>

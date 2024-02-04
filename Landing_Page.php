@@ -28,6 +28,7 @@
     <div class="aboutproject">
         <div class="slogen">
             <h1>E.C.A.D</h1>
+            <h2>Eenrgy Consumption Anoamly Detection</h2>
             <h4>power</h4>
         </div>
         <p>
