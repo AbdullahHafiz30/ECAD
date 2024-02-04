@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
             if (password_verify($cpassword, $stored_password)) {
                 $_SESSION['Consumer_ID'] = $Consumer_ID;
-                header("Location: http://localhost:8888/ECAD-Clone/ECAD/homepage.php");
+                header("Location: http://localhost/ecad/consumer_dashboard.php");
                 exit();
             } else {
                 array_push($errors, "Invalid password");
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="consumer-signin.css">
     <link rel="stylesheet" href="navbar.css">
     <title>Consumer Sign In</title>
 </head>

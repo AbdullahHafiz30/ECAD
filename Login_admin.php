@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
             if (password_verify($apassword, $stored_password)) {
                 $_SESSION['Admin_ID'] = $Admin_ID;
-                header("Location: http://localhost:8888/ECAD-Clone/ECAD/homepage.php");
+                header("Location: http://localhost/ecad/admin_dashboard.php");
                 exit();
             } else {
                 array_push($errors, "Invalid password");
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-signin.css">
     <link rel="stylesheet" href="navbar.css">
     <title>Admin Sign In</title>
 </head>
@@ -81,13 +81,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             <input type="submit" value="Login" class="login" name="login">
             <P>Don't have an account ? <a href="http://localhost/ECAD/admin_signup.php">Signup here</a></P>
             <!-- Add your Signup button or link here -->
-            <!-- <?php
+            <?php
             if (count($errors) > 0) {
                 foreach ($errors as $error) {
                     echo "<div class='printErrors'>$error</div>";
                 }
             }
-            ?> -->
+            ?>
         </form>
     </div>
 </body>
