@@ -36,8 +36,9 @@ if (isset($_POST['submit'])) {
         $password_hash = password_hash($password1, PASSWORD_DEFAULT);
 
         // Insert consumer information
-        $sql_consumer = "INSERT INTO consumer (Consumer_ID, First_Name, Second_Name, Last_Name, UserName, Email, Phone_number, Password) 
+        $sql_consumer = "INSERT INTO consumer (Consumer_ID, First_Name, Second_Name, Last_Name, UserName, Email, Phone_number, Password)
         VALUES ('$Consumer_ID', '$FirstName', '$SecondName', '$LastName', '$UserName', '$Email', '$phone', '$password_hash')";
+        
 
         if (mysqli_query($conn, $sql_consumer)) {
             echo "Consumer record inserted successfully";
@@ -96,6 +97,13 @@ if (isset($_POST['submit'])) {
 
     <div class="Signup">
         <h1>Consumer Sign Up</h1>
+        <?php
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                echo "<div class='printErrors'>$error</div>";
+            }
+        }
+        ?>
         <form action="consumer_signup.php" method="POST">
 
             <!-- Existing fields -->
@@ -118,7 +126,7 @@ if (isset($_POST['submit'])) {
             <input type="text" name="Phone_number" placeholder="">
 
             <div class="inp">
-                <label>House information (not mandatory)</label>
+                <label>House information (Optional)</label>
                 <input type="text" name="Streat_Name" placeholder="Street Name">
                 <input type="text" name="Building_Number" placeholder="Building Number">
                 <input type="text" name="District" placeholder="District">
@@ -126,8 +134,8 @@ if (isset($_POST['submit'])) {
                 <input type="text" name="City" placeholder="City">
             </div>
 
-            <br><br><input type="submit" value="Sign Up" name='submit'>
-            <P>Already Signed up? <a href="http://localhost/ECAD/Login_consumer.php">Login here</a></P>
+            <br><input type="submit" value="Sign Up" name='submit'>
+            <P>Already Signed up? <a href="http://localhost/ECAD/consumer_signin.php">Login here</a></P>
         </form>
     </div>
 </body>
