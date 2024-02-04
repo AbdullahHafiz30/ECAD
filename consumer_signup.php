@@ -75,9 +75,8 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Keywords" content="energy consumption, anomaly detection">
     <title>E.C.A.D Consumer Signup page</title>
-    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="consumer-signup.css">
     <link rel="stylesheet" href="navbar.css">
-
 </head>
 
 <body>

@@ -1,3 +1,11 @@
+<?php
+$errors = array();
+session_start();
+include 'DataBase.php';
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
