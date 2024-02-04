@@ -1,3 +1,26 @@
+<?php
+include 'DataBase.php';
+session_start();
+
+if (isset($_SESSION['Consumer_ID'])) {
+
+    
+$consumerinfo = "SELECT * from Consumer INNER JOIN House ON Consumer.Consumer_ID=House.Consumer_ID  WHERE Consumer.Consumer_ID =241866";
+$houseinfo = "SELECT * from Anomaly INNER JOIN House ON Anomaly.House_ID=House.House_ID  WHERE Consumer_ID =241866";
+
+$cresult = mysqli_query($conn, $consumerinfo);
+$aresult = mysqli_query($conn, $houseinfo);
+
+if (!$cresult) {
+    die('Error executing query: ' . mysqli_error($conn));
+}
+
+$crow = mysqli_fetch_assoc($cresult);
+$arow = mysqli_fetch_assoc($aresult);
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,7 +108,18 @@
 
     <section class="home">
         <div class="text">Dashboard</div>
+        <p>House ID: <?php echo $crow['House_ID']; ?></p>
+    <p>Streat_Name: <?php echo $crow['Streat_Name']; ?></p>
+    <p>City: <?php echo $crow['City']; ?></p>
+    <p>Building_Number: <?php echo $crow['Building_Number']; ?></p>
+    <p>District: <?php echo $crow['District']; ?></p>
+    <p>Postal_Code: <?php echo $crow['Postal_Code']; ?></p>
+    <p>EnergyUnitNumber: <?php echo $crow['EnergyUnitNumber']; ?></p>
+
+    <p>Anomaly_ID: <?php echo $arow['Anomaly_ID']; ?> Timestamp: <?php echo $arow['Timestamp'];?> Consumptions_value: <?php  echo $arow['Consumptions_value']; ?> </p>
+
     </section>
+ 
 </body>
 
 </html>

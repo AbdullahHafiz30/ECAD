@@ -3,8 +3,8 @@ $errors = array();
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    $Consumer_ID = 910955;
-    $cpassword = 123456789;
+    $Consumer_ID = $_POST['Consumer_ID'];
+    $cpassword = $_POST['Password'];
 
     echo "Consumer ID: " . $Consumer_ID . "<br>";
     echo "Password: " . $cpassword . "<br>";
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
             if (password_verify($cpassword, $stored_password)) {
                 $_SESSION['Consumer_ID'] = $Consumer_ID;
-                header("Location: http://localhost/ecad/consumer_dashboard.php");
+                header("Location: /ECAD/consumer_dashboard.php");
                 exit();
             } else {
                 array_push($errors, "Invalid password");
