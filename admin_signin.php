@@ -61,9 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         </div>
 
         <nav class="navigation">
-            <button onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="home">Home</button>
+            <button onclick="window.location.href='//localhost/ECAD/index.php'" class="home">Home</button>
             <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
-
             <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
                 class="Sbtnlgoin">Consumer</button>
         </nav>
