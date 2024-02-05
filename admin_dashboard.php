@@ -27,7 +27,7 @@ include 'DataBase.php';
                 </span>
 
                 <div class="text header-text">
-                    <span class="name">abdullah</span>
+                    <span class="name"> </span>
                 </div>
             </div>
 
