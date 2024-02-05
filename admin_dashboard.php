@@ -15,7 +15,7 @@ include 'DataBase.php';
     <link rel="stylesheet" href="dash-nav.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="sidebar.js" defer></script>
-    <title>Consumer Dashboard</title>
+    <title>Admin Dashboard</title>
 </head>
 
 <body>

@@ -64,8 +64,8 @@
             <div class="bottom-content">
                 <li class="">
                     <a href="#">
-                        <i onclick="window.location.href='//localhost/ECAD/index.php'" class='bx bx-power-off icons'></i>
-                        <span onclick="window.location.href='//localhost/ECAD/index.php'" class="text nav-text">Logout</span>
+                        <i onclick="window.location.href='index.php'" class='bx bx-power-off icons'></i>
+                        <span onclick="window.location.href='index.php'" class="text nav-text">Logout</span>
                     </a>
                 </li>
                 <li class="mode">
