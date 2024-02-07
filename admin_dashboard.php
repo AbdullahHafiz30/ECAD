@@ -15,7 +15,7 @@ include 'DataBase.php';
     <link rel="stylesheet" href="dash-nav.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="sidebar.js" defer></script>
-    <title>Consumer Dashboard</title>
+    <title>Admin Dashboard</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@ include 'DataBase.php';
                 </span>
 
                 <div class="text header-text">
-                    <span class="name">abdullah</span>
+                    <span class="name"> </span>
                 </div>
             </div>
 
@@ -72,8 +72,8 @@ include 'DataBase.php';
             <div class="bottom-content">
                 <li class="">
                     <a href="#">
-                        <i onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class='bx bx-power-off icons'></i>
-                        <span onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="text nav-text">Logout</span>
+                        <i onclick="window.location.href='//localhost/ECAD/index.php'" class='bx bx-power-off icons'></i>
+                        <span onclick="window.location.href='//localhost/ECAD/index.php'" class="text nav-text">Logout</span>
                     </a>
                 </li>
                 <li class="mode">

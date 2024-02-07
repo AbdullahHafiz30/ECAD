@@ -14,7 +14,7 @@
     
 
     <section class="home">
-        <div class="text">Dashboard</div>
+        <div class="text">Energy Consumption</div>
     </section>
 </body>
 

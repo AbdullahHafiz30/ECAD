@@ -1,9 +1,41 @@
 <?php
-$errors = array();
 session_start();
 include 'DataBase.php';
+$errors = array(
+    'name' => '',
+    'email' => '',
+    'userName' => '',
+    'password' => '',
+    'phone' => '',
+    'EnergyUnitNumber' => '',
+    'registration' => ''
+);
+
+
+
+// Initialize variables to hold the submitted values or empty strings if not set
+$submittedValues = array(
+    'First_Name' => '',
+    'Second_Name' => '',
+    'Last_Name' => '',
+    'UserName' => '',
+    'Email' => '',
+    'Password' => '',
+    'EnergyUnitNumber' => '',
+    'Phone_number' => '',
+    'Streat_Name' => '',
+    'Building_Number' => '',
+    'District' => '',
+    'PostalCode' => '',
+    'City' => ''
+);
 
 if (isset($_POST['submit'])) {
+    // Store the submitted values
+    foreach ($_POST as $key => $value) {
+        $submittedValues[$key] = $value;
+    }
+
     $FirstName = mysqli_real_escape_string($conn, $_POST['First_Name']);
     $SecondName = mysqli_real_escape_string($conn, $_POST['Second_Name']);
     $LastName = mysqli_real_escape_string($conn, $_POST['Last_Name']);
@@ -13,38 +45,62 @@ if (isset($_POST['submit'])) {
     $password1 = mysqli_real_escape_string($conn, $_POST['Password']);
     $EnergyUnitNumber = mysqli_real_escape_string($conn, $_POST['EnergyUnitNumber']);
 
-    if (empty($FirstName) || empty($SecondName) || empty($LastName) || empty($Email) || empty($UserName) || empty($password1) || empty($phone) || empty($EnergyUnitNumber)) {
-        array_push($errors, "All fields are required");
+    // Validation and error handling
+    if (empty($FirstName) || empty($SecondName) || empty($LastName)) {
+        $errors['name'] = "All name fields are required";
     }
-    if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
-        array_push($errors, "Email is not valid");
+    if (empty($Email)) {
+        $errors['email'] = "Email is required";
+    } elseif (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "Invalid email format";
     }
-    if (strlen($password1) < 8) {
-        array_push($errors, "Password must be at least 8 characters long");
+    if (empty($UserName)) {
+        $errors['userName'] = "Username is required";
+    }
+    if (empty($password1)) {
+        $errors['password'] = "Password is required";
+    } elseif (strlen($password1) < 8) {
+        $errors['password'] = "Password must be at least 8 characters long";
+    }
+    if (empty($phone)) {
+        $errors['phone'] = "Phone number is required";
+    }
+    if (empty($EnergyUnitNumber)) {
+        $errors['EnergyUnitNumber'] = "Energy unit number is required";
     }
 
     // Check if user with the same email already exists
-    $email_check_query = "SELECT * FROM consumer WHERE Email='$Email' LIMIT 1";
-    $result_email = mysqli_query($conn, $email_check_query);
+    $email_check_query = "SELECT * FROM consumer WHERE Email=?";
+    $stmt = mysqli_prepare($conn, $email_check_query);
+    mysqli_stmt_bind_param($stmt, "s", $Email);
+    mysqli_stmt_execute($stmt);
+    $result_email = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($result_email) > 0) {
-        array_push($errors, "Email already exists");
-    } else {
+        $errors['email'] = "Email already exists";
+    }
+
+    // If no errors, proceed with registration
+    if (empty(array_filter($errors))) {
         // Generate a random Consumer_ID
         $Consumer_ID = mt_rand(100000, 999999);
 
         $password_hash = password_hash($password1, PASSWORD_DEFAULT);
 
-        // Insert consumer information
+        // Insert consumer information using prepared statements
         $sql_consumer = "INSERT INTO consumer (Consumer_ID, First_Name, Second_Name, Last_Name, UserName, Email, Phone_number, Password)
-        VALUES ('$Consumer_ID', '$FirstName', '$SecondName', '$LastName', '$UserName', '$Email', '$phone', '$password_hash')";
-        
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $sql_consumer);
+        mysqli_stmt_bind_param($stmt, "isssssss", $Consumer_ID, $FirstName, $SecondName, $LastName, $UserName, $Email, $phone, $password_hash);
+        mysqli_stmt_execute($stmt);
 
-        if (mysqli_query($conn, $sql_consumer)) {
-            echo "Consumer record inserted successfully";
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            header("Location: consumer_dashboard.php");
         } else {
-            echo "Error: " . $sql_consumer . "<br>" . mysqli_error($conn);
+            $errors['registration'] = "Error: " . mysqli_error($conn);
         }
+
+        mysqli_stmt_close($stmt);
 
         // Insert house information
         $StreetName = mysqli_real_escape_string($conn, $_POST['Streat_Name']);
@@ -52,22 +108,27 @@ if (isset($_POST['submit'])) {
         $District = mysqli_real_escape_string($conn, $_POST['District']);
         $PostalCode = mysqli_real_escape_string($conn, $_POST['PostalCode']);
         $City = mysqli_real_escape_string($conn, $_POST['City']);
-        $EnergyUnitNumber = mysqli_real_escape_string($conn, $_POST['EnergyUnitNumber']);
         $House_ID = mt_rand(100000, 999999);
 
-        $sql_house = "INSERT INTO house (House_ID, Streat_Name,City,Building_Number, District, Postal_Code,EnergyUnitNumber,Consumer_ID) 
-        VALUES ('$House_ID', '$StreetName','$City', '$BuildingNumber', '$District', '$PostalCode','$EnergyUnitNumber','$Consumer_ID')";
+        $sql_house = "INSERT INTO house (House_ID, Streat_Name, City, Building_Number, District, Postal_Code, EnergyUnitNumber, Consumer_ID) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $sql_house);
+        mysqli_stmt_bind_param($stmt, "ississsi", $House_ID, $StreetName, $City, $BuildingNumber, $District, $PostalCode, $EnergyUnitNumber, $Consumer_ID);
+        mysqli_stmt_execute($stmt);
 
-        if (mysqli_query($conn, $sql_house)) {
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
             echo "House information inserted successfully";
         } else {
-            echo "Error: " . $sql_house . "<br>" . mysqli_error($conn);
+            $errors['registration'] = "Error: " . mysqli_error($conn);
         }
+
+        mysqli_stmt_close($stmt);
 
         mysqli_close($conn);
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -87,7 +148,7 @@ if (isset($_POST['submit'])) {
         </div>
 
         <nav class="navigation">
-            <button onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="home">Home</button>
+            <button onclick="window.location.href='//localhost/ECAD/index.php'" class="home">Home</button>
             <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
 
             <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
@@ -97,41 +158,45 @@ if (isset($_POST['submit'])) {
 
     <div class="Signup">
         <h1>Consumer Sign Up</h1>
-        <?php
-        if (count($errors) > 0) {
-            foreach ($errors as $error) {
-                echo "<div class='printErrors'>$error</div>";
-            }
-        }
-        ?>
+ 
         <form action="consumer_signup.php" method="POST">
 
             <!-- Existing fields -->
             <div class="inp">
                 <label>Name</label>
-                <input type="text" name="First_Name" placeholder="FirstName">
-                <input type="text" name="Second_Name" placeholder="MiddleName">
-                <input type="text" name="Last_Name" placeholder="LastName">
+                <span class="error"><?php echo isset($errors['name']) ? $errors['name'] : ''; ?></span><br>
+
+                <input type="text" name="First_Name" placeholder="FirstName" value="<?php echo htmlspecialchars($submittedValues['First_Name']); ?>">
+                <input type="text" name="Second_Name" placeholder="MiddleName" value="<?php echo htmlspecialchars($submittedValues['Second_Name']); ?>">
+                <input type="text" name="Last_Name" placeholder="LastName" value="<?php echo htmlspecialchars($submittedValues['Last_Name']); ?>">
 
                 <label>Profile information</label>
-                <input type="text" name="UserName" placeholder="UserName">
-                <input type="email" name="Email" placeholder="Email">
-                <input type="password" name="Password" placeholder="Password">
+                <span class="error"><?php echo isset($errors['userName']) ? $errors['userName'] : ''; ?></span>
+                <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span>
+                <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
+                <br>
+                <input type="text" name="UserName" placeholder="UserName" value="<?php echo htmlspecialchars($submittedValues['UserName']); ?>">
+                <input type="email" name="Email" placeholder="Email" value="<?php echo htmlspecialchars($submittedValues['Email']); ?>">
+                <input type="password" name="Password" placeholder="Password" value="<?php echo htmlspecialchars($submittedValues['Password']); ?>">
             </div>
 
             <label>Energy unit number</label>
-            <input type="text" name="EnergyUnitNumber" placeholder="">
+            <span class="error"><?php echo isset($errors['EnergyUnitNumber']) ? $errors['EnergyUnitNumber'] : ''; ?></span><br>
+
+            <input type="text" name="EnergyUnitNumber" placeholder="" value="<?php echo htmlspecialchars($submittedValues['EnergyUnitNumber']); ?>">
 
             <label>Phone number</label>
-            <input type="text" name="Phone_number" placeholder="">
+            <span class="error"><?php echo isset($errors['phone']) ? $errors['phone'] : ''; ?></span><br>
+
+            <input type="text" name="Phone_number" placeholder="" value="<?php echo htmlspecialchars($submittedValues['Phone_number']); ?>">
 
             <div class="inp">
                 <label>House information (Optional)</label>
-                <input type="text" name="Streat_Name" placeholder="Street Name">
-                <input type="text" name="Building_Number" placeholder="Building Number">
-                <input type="text" name="District" placeholder="District">
-                <input type="text" name="PostalCode" placeholder="Postal Code">
-                <input type="text" name="City" placeholder="City">
+                <input type="text" name="Streat_Name" placeholder="Street Name" value="<?php echo htmlspecialchars($submittedValues['Streat_Name']); ?>">
+                <input type="text" name="Building_Number" placeholder="Building Number" value="<?php echo htmlspecialchars($submittedValues['Building_Number']); ?>">
+                <input type="text" name="District" placeholder="District" value="<?php echo htmlspecialchars($submittedValues['District']); ?>">
+                <input type="text" name="PostalCode" placeholder="Postal Code" value="<?php echo htmlspecialchars($submittedValues['PostalCode']); ?>">
+                <input type="text" name="City" placeholder="City" value="<?php echo htmlspecialchars($submittedValues['City']); ?>">
             </div>
 
             <br><input type="submit" value="Sign Up" name='submit'>

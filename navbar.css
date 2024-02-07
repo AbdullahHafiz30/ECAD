@@ -6,6 +6,24 @@
     box-sizing: border-box;
 }
 
+
+:root {
+    --body-color: #e4e9f7;
+    --sidbar-color: #fff;
+    --primery-color: #10870e;
+    --primery-color-light: #f6f5ff;
+    --toggle-color: #ddd;
+    --text-color: #707070;
+    --border-color: #00e563;
+    --black: #000;
+
+
+    --tran--02: all 0.2s ease;
+    --tran--03: all 0.3s ease;
+    --tran--04: all 0.4s ease;
+    --tran--05: all 0.5s ease;
+}
+
 header {
     position: fixed;
     top: 0;
@@ -23,50 +41,29 @@ header {
     position: fixed;
     position: relative;
     font-size: 30px;
-    color: #00e563;
+    color: var(--border-color);
     user-select: none;
     margin-left: 5px;
     font-family: 'Pacifico';
 }
 
-.navigation .home {
+.navigation button {
     width: 150px;
     height: 35px;
     background: transparent;
-    border: 2px solid #00e563;
+    border: 2px solid var(--border-color);
     outline: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 20px;
-    color: #00e563;
+    color: var(--border-color);
     font-weight: 500;
     margin-left: 20px;
     transition: .5s;
 }
 
-.navigation .home:hover {
-    background: #fdfdfda9;
-    color: #000000;
-    border-color: #000000;
-}
-
-.navigation .Sbtnlgoin {
-    width: 150px;
-    height: 35px;
-    background: transparent;
-    border: 2px solid #00e563;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 20px;
-    color: #00e563;
-    font-weight: 500;
-    margin-left: 20px;
-    transition: .5s;
-}
-
-.navigation .Sbtnlgoin:hover {
-    background: #fdfdfda9;
-    color: #000000;
-    border-color: #000000;
+.navigation button:hover {
+    background: var(--border-color);
+    color: var(--black);
+    border-color: var(--black);
 }

@@ -1,22 +1,25 @@
 <?php
-$errors = array();
-session_start(); //hello my name abdullah
+$errors = array(); // Initialize $errors as an array
+session_start(); 
 
+// Initialize variables to hold submitted values
+$submitted_ID = isset($_POST['ID']) ? $_POST['ID'] : '';
+$submitted_Password = isset($_POST['Password']) ? $_POST['Password'] : '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    $Admin_ID = $_POST['ID'];
-    $apassword = $_POST['Password'];  // Corrected this line
+    $Admin_ID = $submitted_ID;
+    $apassword = $submitted_Password;
 
-
-    if (empty($Admin_ID) || empty($apassword)) {
-
-        array_push($errors, "Admin_ID and password are required");
+    if (empty($Admin_ID)) {
+        $errors[] = "ID is required"; // Append errors to the $errors array
+    }
+    if (empty($apassword)) {
+        $errors[] = "Password is required"; // Append errors to the $errors array
     }
 
-    if (count($errors) === 0) {
-        include 'DataBase.php';  // Consider a relative path
+    if (count($errors) == 0) {
+        include 'DataBase.php'; // Ensure the path is correct
 
-        // Prepared statement recommended here for security
         $admin_check_query = "SELECT * FROM admin WHERE Admin_ID=? LIMIT 1";
         $stmt = $conn->prepare($admin_check_query);
         $stmt->bind_param("s", $Admin_ID);
@@ -29,23 +32,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
             if (password_verify($apassword, $stored_password)) {
                 $_SESSION['Admin_ID'] = $Admin_ID;
-                header("Location: http://localhost/ecad/admin_dashboard.php");
+                header("Location: admin_dashboard.php");
                 exit();
             } else {
-                array_push($errors, "Invalid password");
+                $errors[] = "Incorrect ID or password"; // Append errors to the $errors array
             }
         } else {
-            array_push($errors, "ID not found");
+            $errors[] = "Incorrect ID or password"; // Append errors to the $errors array
         }
 
-        mysqli_close($conn);
+        $stmt->close(); 
+        $conn->close(); 
     }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,42 +56,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <link rel="stylesheet" href="navbar.css">
     <title>Admin Sign In</title>
 </head>
-
 <body>
     <header>
-        <div class="mark">
-            E.C.A.D
-        </div>
-
+        <div class="mark">E.C.A.D</div>
         <nav class="navigation">
-            <button onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="home">Home</button>
-            <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
-
-            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
-                class="Sbtnlgoin">Consumer</button>
+            <button onclick="window.location.href='index.php'" class="home">Home</button>
+            <button onclick="window.location.href='Admin_Page.php'" class="Sbtnlgoin">Admin</button>
+            <button onclick="window.location.href='Consumer_Page.php'" class="Sbtnlgoin">Consumer</button>
         </nav>
     </header>
-
     <div class="Login">
         <form action="" method="POST">
             <h1>Sign in</h1>
+
             <label for="Admin_ID">ID</label><br>
-            <input type="text" name="ID" id="Admin_ID" placeholder="ID">
+            <span class="error"><?php echo isset($errors) ? implode("<br>",$errors) : ''; ?></span>
+            <input type="text" name="ID" id="Admin_ID" placeholder="ID" value="<?php echo htmlspecialchars($submitted_ID); ?>">
             <label>Password</label><br>
-            <input type="password" name="Password" id="Password" placeholder="Password">
+            <input type="password" name="Password" id="Password" placeholder="Password" value="<?php echo htmlspecialchars($submitted_Password); ?>">
             <br><br>
             <input type="submit" value="Login" class="login" name="login">
-            <P>Don't have an account ? <a href="http://localhost/ECAD/admin_signup.php">Signup here</a></P>
-            <!-- Add your Signup button or link here -->
-            <?php
-            if (count($errors) > 0) {
-                foreach ($errors as $error) {
-                    echo "<div class='printErrors'>$error</div>";
-                }
-            }
-            ?>
+            <p>Don't have an account? <a href="admin_signup.php">Signup here</a></p>
+
         </form>
     </div>
 </body>
-
 </html>
