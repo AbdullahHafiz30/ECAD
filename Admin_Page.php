@@ -16,9 +16,8 @@
         </div>
 
         <nav class="navigation">
-            <button onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="home">Home</button>
+            <button onclick="window.location.href='//localhost/ECAD/index.php'" class="home">Home</button>
             <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
-
             <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
                 class="Sbtnlgoin">Consumer</button>
         </nav>
@@ -33,7 +32,7 @@
         </div>
 
         <!-- Admin Login Card -->
-        <div class="card" onclick="window.location.href='//localhost/ECAD/Login_admin.php'">
+        <div class="card" onclick="window.location.href='//localhost/ECAD/admin_signin.php'">
             <h2>Admin</h2>
             <h2>Sign In</h2>
             <!-- Add your login form here -->

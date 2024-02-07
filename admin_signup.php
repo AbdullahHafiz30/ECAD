@@ -1,9 +1,21 @@
 <?php
-$errors = array();
 session_start();
 include 'DataBase.php';
 
+$errors = array(
+    'name' => '', // Consolidated error message for all name fields
+    'email' => '',
+    'userName' => '',
+    'password' => '',
+    'phone' => '',
+    'adminID' => '',
+    'emailExists' => '',
+    'adminIDExists' => '',
+    'registration' => ''
+);
+
 if (isset($_POST['submit'])) {
+    // Sanitize user input
     $FirstName = mysqli_real_escape_string($conn, $_POST['First_Name']);
     $SecondName = mysqli_real_escape_string($conn, $_POST['Second_Name']);
     $LastName = mysqli_real_escape_string($conn, $_POST['Last_Name']);
@@ -13,109 +25,119 @@ if (isset($_POST['submit'])) {
     $Email = mysqli_real_escape_string($conn, $_POST['Email']);
     $password1 = mysqli_real_escape_string($conn, $_POST['Password']);
 
-    if (empty($FirstName) || empty($SecondName) || empty($LastName) || empty($Email) || empty($UserName) || empty($password1) || empty($phone)) {
-        array_push($errors, "All fields are required");
+    // Validate user input
+    if (empty($FirstName) || empty($SecondName) || empty($LastName)) {
+        $errors['name'] = "All name fields are required";
     }
-    if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
-        array_push($errors, "Email is not valid");
+    if (empty($Email)) {
+        $errors['email'] = "Email is required";
+    } elseif (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "Invalid email format";
     }
-    if (strlen($password1) < 8) {
-        array_push($errors, "Password must be at least 8 characters long");
+    if (empty($UserName)) {
+        $errors['userName'] = "Username is required";
+    }
+    if (empty($password1)) {
+        $errors['password'] = "Password is required";
+    } elseif (strlen($password1) < 8) {
+        $errors['password'] = "Password must be at least 8 characters long";
+    }
+    if (empty($phone)) {
+        $errors['phone'] = "Phone is required";
+    }
+    if (empty($Admin_ID)) {
+        $errors['adminID'] = "ID is required";
     }
 
-    // Check if user with the same email or Admin_ID already exists
+    // Check for existing email or Admin ID
     $email_check_query = "SELECT * FROM admin WHERE Email='$Email' LIMIT 1";
     $Admin_ID_check_query = "SELECT * FROM admin WHERE Admin_ID='$Admin_ID' LIMIT 1";
     $result_email = mysqli_query($conn, $email_check_query);
     $result_ID = mysqli_query($conn, $Admin_ID_check_query);
 
     if (mysqli_num_rows($result_email) > 0) {
-        array_push($errors, "Email already exists");
+        $errors['emailExists'] = "Email already exists";
     }
     if (mysqli_num_rows($result_ID) > 0) {
-        array_push($errors, "Admin_ID already exists");
-    } else {
+        $errors['adminIDExists'] = "Admin ID already exists";
+    }
+
+    // If no errors, proceed with registration
+    if (empty(array_filter($errors))) {
         $password_hash = password_hash($password1, PASSWORD_DEFAULT);
 
-        // Prepare and execute the INSERT query
-        $sql_admin = "INSERT INTO admin (Admin_ID,First_Name, Second_Name, Last_Name, UserName, Email, Phone_number, Password) VALUES ('$Admin_ID','$FirstName', '$SecondName', '$LastName','$UserName','$Email', '$phone', '$password_hash')";
-        mysqli_query($conn, $sql_admin);
-        echo $sql_admin;
-        if (mysqli_query($conn, $sql_admin)) {
-            echo "Record inserted successfully";
+        $sql_admin = "INSERT INTO admin (Admin_ID, First_Name, Second_Name, Last_Name, UserName, Email, Phone_number, Password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $sql_admin);
+        mysqli_stmt_bind_param($stmt, "ssssssss", $Admin_ID, $FirstName, $SecondName, $LastName, $UserName, $Email, $phone, $password_hash);
+
+        if (mysqli_stmt_execute($stmt)) {
+            // Registration successful, redirect to dashboard
+            header("Location: admin_dashboard.php");
+            exit();
         } else {
-            echo "Error: " . $sql_admin . "<br>" . mysqli_error($conn);
+            $errors['registration'] = "Error: " . mysqli_error($conn);
         }
 
-        mysqli_close($conn);
+        mysqli_stmt_close($stmt);
     }
+
+    mysqli_close($conn);
 }
 ?>
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta name="viewreport" content="width=device-width, initial-scale=1.0">
     <meta name="Keywords" content="energy consumption , anomaly detection">
     <title>E.C.A.D Admin Signup page</title>
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="admin-signup.css">
     <link rel="stylesheet" href="navbar.css">
 </head>
-
 <body>
     <header>
         <div class="mark">
             E.C.A.D
         </div>
-
         <nav class="navigation">
-            <button onclick="window.location.href='//localhost/ECAD/Landing_Page.php'" class="home">Home</button>
+            <button onclick="window.location.href='//localhost/ECAD/index.php'" class="home">Home</button>
             <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
-
-            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
-                class="Sbtnlgoin">Consumer</button>
+            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'" class="Sbtnlgoin">Consumer</button>
         </nav>
     </header>
-
     <div class="Signup">
         <h1>Admin Sign Up</h1>
-        <?php
-        if (count($errors) > 0) {
-            foreach ($errors as $error) {
-                echo "<div class='printErrors'>$error</div>";
-            }
-        }
-        ?>
         <form action="admin_signup.php" method="POST">
             <div class="inp">
-                <label>Name</label><br>
-                <input type="text" name="First_Name" placeholder="FirstName">
-                <input type="text" name="Second_Name" placeholder="MiddleName">
-                <input type="text" name="Last_Name" placeholder="LastName">
+                <label>Name</label>
+                <span class="error"><?php echo isset($errors['name']) ? $errors['name'] : ''; ?></span>
                 <br>
-
-
-                <label>Profile information</label><br>
-                <input type="text" name="UserName" placeholder="UserName">
-                <input type="email" name="Email" placeholder="Email">
-                <input type="password" name="Password" placeholder="Password">
+                <input type="text" name="First_Name" placeholder="FirstName" value="<?php echo isset($_POST['First_Name']) ? $_POST['First_Name'] : ''; ?>">
+                <input type="text" name="Second_Name" placeholder="MiddleName" value="<?php echo isset($_POST['Second_Name']) ? $_POST['Second_Name'] : ''; ?>">
+                <input type="text" name="Last_Name" placeholder="LastName" value="<?php echo isset($_POST['Last_Name']) ? $_POST['Last_Name'] : ''; ?>">
+                <br>
+                <label>Profile information</label>
+                <span class="error"><?php echo isset($errors['userName']) ? $errors['userName'] : ''; ?></span>
+                <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span>
+                <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
+                <br>
+                <input type="text" name="UserName" placeholder="UserName" value="<?php echo isset($_POST['UserName']) ? $_POST['UserName'] : ''; ?>">
+                <input type="email" name="Email" placeholder="Email" value="<?php echo isset($_POST['Email']) ? $_POST['Email'] : ''; ?>">
+                <input type="password" name="Password" placeholder="Password" value="<?php echo isset($_POST['Password']) ? $_POST['Password'] : ''; ?>">
                 <br>
             </div>
-            <label>Admin ID</label><br>
-            <input type="text" name="Admin_ID" placeholder="Admin_ID">
+            <label>Admin ID</label>
+            <span class="error"><?php echo isset($errors['adminID']) ? $errors['adminID'] : ''; ?></span>
             <br>
-            <label>Phone number</label><br>
-            <input type="text" name="Phone_number" placeholder="Phone">
+            <input type="text" name="Admin_ID" placeholder="Admin_ID" value="<?php echo isset($_POST['Admin_ID']) ? $_POST['Admin_ID'] : ''; ?>">
             <br>
-
-
+            <label>Phone number</label>
+            <span class="error"><?php echo isset($errors['phone']) ? $errors['phone'] : ''; ?></span>
+            <br>
+            <input type="text" name="Phone_number" placeholder="Phone" value="<?php echo isset($_POST['Phone_number']) ? $_POST['Phone_number'] : ''; ?>">
+            <br>
             <br><br><input type="submit" value="Sign Up" name='submit'>
-            <P>Already Signed up? <a href="http://localhost/ECAD/Login_admin.php">Login here</a></P>
-
+            <P>Already Signed up? <a href="admin_signin.php">Login here</a></P>
         </form>
     </div>
-
 </body>
-
 </html>

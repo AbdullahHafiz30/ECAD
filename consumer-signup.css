@@ -1,43 +1,60 @@
 body {
-    background-image: url(./images/photo-1441171205449-f600f908a9f3.png);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(./images/background.png);
     background-repeat: no-repeat;
+    background-size: 100% 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	justify-content: center;
-	align-items: center;
 }
 
-.Login {
+.Signup {
     background: transparent;
     backdrop-filter: blur(30px);
     border: 1px solid lawngreen;
-    width: 360px;
-    height: 460px;
+    width: 900px;
+    height: auto;
     border-radius: 6px;
-    margin: auto;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
     color: aliceblue;
-	position: relative;
-	margin-top: 200px;
-    
 }
 
 h1 {
     text-align: center;
+    padding-top: 15px;
+    
 }
 
 form {
-    display: inline-block;
-    margin-left: 1.1rem;
+    display: block;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    
 }
 
 form label {
     display: flex;
-    margin-top: 15px;
+    margin-top: 20px;
     font-size: 25px;
 }
 
+.inp input {
+    width: 32%;
+    border: none;
+    border: 1px solid lightgreen;
+    border-radius: 6px;
+    outline: none;
+    margin-bottom: 20px;
+}
+
 form input {
-    width: 100%;
+    width: 97%;
     padding: 7px;
     border: none;
     border: 1px solid lightgreen;
@@ -46,9 +63,8 @@ form input {
 }
 
 form [type="submit"] {
-    width: 300px;
+    width: 820px;
     height: 45px;
-    margin-top: 13px;
     border: none;
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -64,4 +80,5 @@ form [type="submit"]:hover {
 p{
     text-align: center;
     font-size: 17px;
+    padding-top: 10px;
 }
