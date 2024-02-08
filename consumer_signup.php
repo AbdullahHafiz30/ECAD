@@ -108,12 +108,11 @@ if (isset($_POST['submit'])) {
         $District = mysqli_real_escape_string($conn, $_POST['District']);
         $PostalCode = mysqli_real_escape_string($conn, $_POST['PostalCode']);
         $City = mysqli_real_escape_string($conn, $_POST['City']);
-        $House_ID = mt_rand(100000, 999999);
 
-        $sql_house = "INSERT INTO house (House_ID, Streat_Name, City, Building_Number, District, Postal_Code, EnergyUnitNumber, Consumer_ID) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql_house = "INSERT INTO house (Streat_Name, City, Building_Number, District, Postal_Code, EnergyUnitNumber, Consumer_ID) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql_house);
-        mysqli_stmt_bind_param($stmt, "ississsi", $House_ID, $StreetName, $City, $BuildingNumber, $District, $PostalCode, $EnergyUnitNumber, $Consumer_ID);
+        mysqli_stmt_bind_param($stmt, "ssisssi", $StreetName, $City, $BuildingNumber, $District, $PostalCode, $EnergyUnitNumber, $Consumer_ID);
         mysqli_stmt_execute($stmt);
 
         if (mysqli_stmt_affected_rows($stmt) > 0) {
