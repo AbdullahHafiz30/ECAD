@@ -1,0 +1,26 @@
+.house {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    border-left: 6px solid #4CAF50; /* Green border */
+    transition: border-left 0.1s ease-in-out; /* Smooth transition */
+}
+
+.house:hover {
+    border-left: 10px solid #4CAF50;
+}
+
+.house h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333333;
+    font-size: 18px;
+}
+
+.house p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'DataBase.php';
 $errors = array(
     'name' => '',
@@ -95,6 +94,8 @@ if (isset($_POST['submit'])) {
         mysqli_stmt_execute($stmt);
 
         if (mysqli_stmt_affected_rows($stmt) > 0) {
+            session_start();
+            $_SESSION['email'] = $Email;
             header("Location: consumer_dashboard.php");
         } else {
             $errors['registration'] = "Error: " . mysqli_error($conn);
