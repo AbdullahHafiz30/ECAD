@@ -1,5 +1,7 @@
 <?php
 include 'DataBase.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 $errors = array(
     'name' => '',
     'email' => '',
@@ -82,15 +84,16 @@ if (isset($_POST['submit'])) {
     // If no errors, proceed with registration
     if (empty(array_filter($errors))) {
         // Generate a random Consumer_ID
-        $Consumer_ID = mt_rand(100000, 999999);
+        
 
         $password_hash = password_hash($password1, PASSWORD_DEFAULT);
 
         // Insert consumer information using prepared statements
         $sql_consumer = "INSERT INTO consumer (Consumer_ID, First_Name, Second_Name, Last_Name, UserName, Email, Phone_number, Password)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $Consumer_ID = NULL; 
         $stmt = mysqli_prepare($conn, $sql_consumer);
-        mysqli_stmt_bind_param($stmt, "isssssss", $Consumer_ID, $FirstName, $SecondName, $LastName, $UserName, $Email, $phone, $password_hash);
+        mysqli_stmt_bind_param($stmt, "isssssss",$Consumer_ID, $FirstName, $SecondName, $LastName, $UserName, $Email, $phone, $password_hash);
         mysqli_stmt_execute($stmt);
 
         if (mysqli_stmt_affected_rows($stmt) > 0) {
@@ -110,10 +113,12 @@ if (isset($_POST['submit'])) {
         $PostalCode = mysqli_real_escape_string($conn, $_POST['PostalCode']);
         $City = mysqli_real_escape_string($conn, $_POST['City']);
 
+
         $sql_house = "INSERT INTO house (Streat_Name, City, Building_Number, District, Postal_Code, EnergyUnitNumber, Consumer_ID) 
         VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql_house);
         mysqli_stmt_bind_param($stmt, "ssisssi", $StreetName, $City, $BuildingNumber, $District, $PostalCode, $EnergyUnitNumber, $Consumer_ID);
+
         mysqli_stmt_execute($stmt);
 
         if (mysqli_stmt_affected_rows($stmt) > 0) {

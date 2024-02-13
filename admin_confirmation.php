@@ -4,7 +4,7 @@ session_start();
 include 'DataBase.php';
 include 'side-bar.php'; 
 
-$anomalyinfo = "SELECT * FROM train WHERE  building_id = 107 AND  AnomalyStatus = 'Confirmed' ";
+$anomalyinfo = "SELECT * FROM train WHERE  building_id = 107 AND  AnomalyStatus = 'Pending' ";
 $aresult = mysqli_query($conn, $anomalyinfo);
 $arow = mysqli_fetch_assoc($aresult);
 
@@ -30,22 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="info_card.css">
     <script src="sidebar.js" defer></script>
-    <title>Anomaly Information</title>
+    <title>Admin Confirmation</title>
 </head>
 
 <body>
     <section class="home">
         <div class="text">Anomaly</div>
         <div class="container">
-            <style>
-        .powerbi-container {
-            margin-bottom: 200px; 
-            margin-left: 300px; 
-        }
-        </style>
-               <div class="powerbi-container">
-               <iframe title="CBuilding107" width="900" height="500" src="https://app.powerbi.com/reportEmbed?reportId=99436f89-1d6d-4878-9325-4b5abb0051a6&autoAuth=true&ctid=13a8d02d-59f3-416a-8231-b3080e639cad" frameborder="0" allowFullScreen="true"></iframe>   
-                     </div>
+           
                         <div class="card">
                 <p>building_id: <?php echo $arow['building_id']; ?></p>
                 <p>Timestamp: <?php echo $arow['timestamp']; ?></p>
@@ -53,6 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p>AnomalyStatus: <?php echo $arow['AnomalyStatus']; ?></p>
             </div>
         </div>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <button type="submit" class="button" name="confirm">Confirm</button>
+            <button type="submit" class="button" name="reject">Reject</button>
+        </form>
     </section>
 </body>
 
