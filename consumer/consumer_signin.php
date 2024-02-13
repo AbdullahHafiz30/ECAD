@@ -80,23 +80,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             <h1>Sign In</h1>
 
             <label for="Email">Email</label><br>
-<<<<<<< HEAD
-            <span class="error">
-                <?php echo isset($errors) ? implode("<br>", $errors) : ''; ?>
-            </span>
-            <input type="email" name="Email" id="Email" placeholder="Email"
-                value="<?php echo htmlspecialchars($Email); ?>">
-            <label for="Password">Password</label><br>
-            <input type="password" name="Password" id="Password" placeholder="Password"
-                value="<?php echo htmlspecialchars($cpassword); ?>">
-=======
             <span class="error"><?php echo isset($errors) ? implode("<br>",$errors) : ''; ?></span>
 
             <input type="email" name="Email" id="Email" placeholder="Email" value="<?php echo isset($Email) ? htmlspecialchars($Email) : ''; ?>">
 
             <label for="Password">Password</label><br>
             <input type="password" name="Password" id="Password" placeholder="Password" value="<?php echo isset($cpassword) ? htmlspecialchars($cpassword) : ''; ?>">
->>>>>>> f155c8aab76e27198b508c7cb907f8ae2fd362b9
             <br><br>
             <input type="submit" value="Login" class="login" name="login">
             <p>Don't have an account? <a href="consumer_signup.php">Signup here</a></p>
