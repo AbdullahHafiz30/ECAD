@@ -31,16 +31,16 @@ h1 {
 
 form {
     display: block;
-    margin-top: 2rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1.1rem;
+    margin-left: 1.1rem;
+    margin-right: 1.1rem;
+    margin-bottom: 1.1rem;
     
 }
 
 form label {
     display: flex;
-    margin-top: 20px;
+    margin-top: 5px;
     font-size: 25px;
 }
 
@@ -50,7 +50,7 @@ form label {
     border: 1px solid lightgreen;
     border-radius: 6px;
     outline: none;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 form input {
