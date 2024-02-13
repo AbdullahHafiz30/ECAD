@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'DataBase.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -98,6 +97,8 @@ if (isset($_POST['submit'])) {
         mysqli_stmt_execute($stmt);
 
         if (mysqli_stmt_affected_rows($stmt) > 0) {
+            session_start();
+            $_SESSION['email'] = $Email;
             header("Location: consumer_dashboard.php");
         } else {
             $errors['registration'] = "Error: " . mysqli_error($conn);
@@ -112,12 +113,12 @@ if (isset($_POST['submit'])) {
         $PostalCode = mysqli_real_escape_string($conn, $_POST['PostalCode']);
         $City = mysqli_real_escape_string($conn, $_POST['City']);
 
-        $sql_house = "INSERT INTO house (House_ID, Streat_Name, City, Building_Number, District, Postal_Code, EnergyUnitNumber, Consumer_ID) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                $House_ID = NULL; 
-                $Consumer_ID = mysqli_insert_id($conn);
+
+        $sql_house = "INSERT INTO house (Streat_Name, City, Building_Number, District, Postal_Code, EnergyUnitNumber, Consumer_ID) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql_house);
-        mysqli_stmt_bind_param($stmt, "isssisii", $House_ID, $StreetName, $City, $BuildingNumber, $District, $PostalCode, $EnergyUnitNumber, $Consumer_ID);
+        mysqli_stmt_bind_param($stmt, "ssisssi", $StreetName, $City, $BuildingNumber, $District, $PostalCode, $EnergyUnitNumber, $Consumer_ID);
+
         mysqli_stmt_execute($stmt);
 
         if (mysqli_stmt_affected_rows($stmt) > 0) {

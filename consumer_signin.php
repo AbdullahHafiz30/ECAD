@@ -1,6 +1,5 @@
 <?php
 $errors = array();
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $Email = $_POST['Email'];
@@ -25,7 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             $stored_password = $consumer_row['Password'];
 
             if (password_verify($cpassword, $stored_password)) {
-                $_SESSION['Email'] = $Email;
+                session_start();
+                $_SESSION['email'] = $Email;
                 header("Location: consumer_dashboard.php");
                 exit();
             } else {
@@ -75,10 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             <label for="Password">Password</label><br>
             <input type="password" name="Password" id="Password" placeholder="Password" value="<?php echo isset($cpassword) ? htmlspecialchars($cpassword) : ''; ?>">
             <br><br>
-
             <input type="submit" value="Login" class="login" name="login">
             <p>Don't have an account? <a href="consumer_signup.php">Signup here</a></p>
-
         </form>
     </div>
 </body>
