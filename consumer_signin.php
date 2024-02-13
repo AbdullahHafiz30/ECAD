@@ -16,7 +16,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         // Prepared statement recommended here for security
         $consumer_check_query = "SELECT * FROM consumer WHERE Email=? LIMIT 1";
         $stmt = $conn->prepare($consumer_check_query);
+
+        if (!$stmt) {
+            die('Error preparing statement: ' . $conn->error);
+        }
+
         $stmt->bind_param("s", $Email);
+
+        if (!$stmt->execute()) {
+            die('Error executing statement: ' . $stmt->error);
+        }
+        
         $stmt->execute();
         $result_consumer = $stmt->get_result();
 
@@ -43,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <link rel="stylesheet" href="navbar.css">
     <title>Consumer Sign In</title>
 </head>
+
 <body>
     <header>
         <div class="mark">
@@ -68,14 +80,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             <h1>Sign In</h1>
 
             <label for="Email">Email</label><br>
-            <span class="error"><?php echo isset($errors) ? implode("<br>",$errors) : ''; ?></span>
-            <input type="email" name="Email" id="Email" placeholder="Email" value="<?php echo htmlspecialchars($Email); ?>">
+            <span class="error">
+                <?php echo isset($errors) ? implode("<br>", $errors) : ''; ?>
+            </span>
+            <input type="email" name="Email" id="Email" placeholder="Email"
+                value="<?php echo htmlspecialchars($Email); ?>">
             <label for="Password">Password</label><br>
-            <input type="password" name="Password" id="Password" placeholder="Password" value="<?php echo htmlspecialchars($cpassword); ?>">
+            <input type="password" name="Password" id="Password" placeholder="Password"
+                value="<?php echo htmlspecialchars($cpassword); ?>">
             <br><br>
             <input type="submit" value="Login" class="login" name="login">
             <p>Don't have an account? <a href="consumer_signup.php">Signup here</a></p>
         </form>
     </div>
 </body>
+
 </html>
