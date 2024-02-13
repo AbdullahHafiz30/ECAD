@@ -23,6 +23,7 @@ $conn->close();
 
 <body>
     <div class="center-table">
+        <h1>Alerts</h1><br><br>
         <table class="content-table">
             <thead>
                 <tr>
