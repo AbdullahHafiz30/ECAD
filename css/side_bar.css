@@ -31,7 +31,7 @@ body {
 body.dark {
     --body-color: #18191a;
     --sidbar-color: #242526;
-    --primery-color: #10870e;
+    --primery-color: #4CAF50;
     --primery-color-light: #3a3b3c;
     --toggle-color: #ddd;
     --text-color: #ccc;

@@ -16,9 +16,9 @@
         </div>
 
         <nav class="navigation">
-            <button onclick="window.location.href='//localhost/ECAD/index.php'" class="home">Home</button>
-            <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
-            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
+            <button onclick="window.location.href='/ECAD/index.php'" class="home">Home</button>
+            <button onclick="window.location.href='/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
+            <button onclick="window.location.href='/ECAD/Consumer_Page.php'"
                 class="Sbtnlgoin">Consumer</button>
         </nav>
     </header>
@@ -26,13 +26,13 @@
 
     <div class="card-container">
         <!-- Admin Signup Card -->
-        <div class="card" onclick="window.location.href='//localhost/ECAD/consumer_signup.php'">
+        <div class="card" onclick="window.location.href='/ECAD/consumer_signup.php'">
             <h2>Consumer</h2><h2>Sign Up</h2>
             <!-- Add your signup form here -->
         </div>
 
         <!-- Admin Login Card -->
-        <div class="card" onclick="window.location.href='//localhost/ECAD/consumer_signin.php'">
+        <div class="card" onclick="window.location.href='/ECAD/consumer_signin.php'">
             <h2>Consumer</h2><h2>Sign In</h2>
             <!-- Add your login form here -->
         </div>

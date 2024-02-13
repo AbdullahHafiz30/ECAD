@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <script src="sidebar.js" defer></script>
     <title>Consumer Dashboard</title>
 </head>
 
@@ -14,7 +13,7 @@
     
 
     <section class="home">
-        <div class="text">Anomalies</div>
+        <div class="text">Dashboard</div>
     </section>
 </body>
 
