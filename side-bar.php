@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dash-nav.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Document</title>
-</head>
-<body>
+
+    <script src="sidebar.js" defer></script>
+
 <nav class="sidebar close">
     <header>
         <div class="image-text">
@@ -52,7 +49,7 @@
                 </li>
                 <li class="nav-link">
                     <a href="#">
-                        <i onclick="window.location.href='consumer_house.php'" class='bx bx-building-house icons'></i>
+                        <i onclick="window.location.href='houses.php'" class='bx bx-building-house icons'></i>
                         <span onclick="window.location.href='consumer_house.php'" class="text nav-text">Houses</span>
                     </a>
                 </li>
@@ -79,5 +76,3 @@
         </div>
     </div>
 </nav>
-</body>
-</html>
