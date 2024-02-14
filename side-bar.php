@@ -3,10 +3,10 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dash-nav.css">
+    <link rel="stylesheet" href="../css/side_bar.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <script src="sidebar.js" defer></script>
+    <script src="../JS/sidebar.js" defer></script>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="./images/profile.png" alt="account img">
+                    <img src="../images/profile.png" alt="account img">
                 </span>
 
                 <div class="text header-text">
