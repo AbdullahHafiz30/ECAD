@@ -41,7 +41,7 @@ if ($result) {
             foreach ($houses as $house) {
                 echo "<div class='house'>";
                 echo "<h3>House  ".$hID."</h3>";
-                echo "<p>Street Name: ".$house['Street_Name']."</p>";
+                echo "<p>Street Name: ".$house['Streat_Name']."</p>";
                 echo "<p>City: ".$house['City']."</p>";
                 echo "<p>Building Number: ".$house['Building_Number']."</p>";
                 echo "<p>District: ".$house['District']."</p>";

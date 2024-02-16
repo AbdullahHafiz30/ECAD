@@ -64,7 +64,7 @@ include 'DataBase.php';
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-building-house icons'></i>
-                            <span class="text nav-text">House Information</span>
+                            <span class="text nav-text">Houses Information</span>
                         </a>
                     </li>
                 </ul>
@@ -72,8 +72,8 @@ include 'DataBase.php';
             <div class="bottom-content">
                 <li class="">
                     <a href="#">
-                        <i onclick="window.location.href='//localhost/ECAD/index.php'" class='bx bx-power-off icons'></i>
-                        <span onclick="window.location.href='//localhost/ECAD/index.php'" class="text nav-text">Logout</span>
+                        <i onclick="window.location.href='/ECAD/index.php'" class='bx bx-power-off icons'></i>
+                        <span onclick="window.location.href='/ECAD/index.php'" class="text nav-text">Logout</span>
                     </a>
                 </li>
                 <li class="mode">
