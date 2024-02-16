@@ -90,8 +90,8 @@ if (isset($_POST['submit'])) {
     <meta name="viewreport" content="width=device-width, initial-scale=1.0">
     <meta name="Keywords" content="energy consumption , anomaly detection">
     <title>E.C.A.D Admin Signup page</title>
-    <link rel="stylesheet" href="admin-signup.css">
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="../css/admin/admin-signup.css">
+    <link rel="stylesheet" href="../css/navbar.css">
 </head>
 <body>
     <header>
@@ -99,9 +99,9 @@ if (isset($_POST['submit'])) {
             E.C.A.D
         </div>
         <nav class="navigation">
-            <button onclick="window.location.href='//localhost/ECAD/index.php'" class="home">Home</button>
-            <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
-            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'" class="Sbtnlgoin">Consumer</button>
+        <button onclick="window.location.href='../index.php'" class="home">Home</button>
+            <button onclick="window.location.href='../admin/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
+            <button onclick="window.location.href='../consumer/Consumer_Page.php'"class="Sbtnlgoin">Consumer</button>
         </nav>
     </header>
     <div class="Signup">

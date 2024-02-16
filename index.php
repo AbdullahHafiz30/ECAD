@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/index.css">
     <title>E.C.A.D</title>
 </head>
 
@@ -16,9 +16,9 @@
         </div>
 
         <nav class="navigation">
-            <button onclick="window.location.href='//localhost/ECAD/index.php'">Home</button>
-            <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'">Admin</button>
-            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'">Consumer</button>
+            <button onclick="window.location.href='index.php'">Home</button>
+            <button onclick="window.location.href='admin/Admin_Page.php'">Admin</button>
+            <button onclick="window.location.href='consumer/Consumer_Page.php'">Consumer</button>
         </nav>
     </header>
 

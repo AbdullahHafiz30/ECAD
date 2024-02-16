@@ -57,8 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="consumer-signin.css">
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="../css/consumer/consumer-signin.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <title>Consumer Sign In</title>
 </head>
 
@@ -69,9 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         </div>
 
         <nav class="navigation">
-            <button onclick="window.location.href='index.php'" class="home">Home</button>
-            <button onclick="window.location.href='Admin_Page.php'" class="Sbtnlgoin">Admin</button>
-            <button onclick="window.location.href='Consumer_Page.php'" class="Sbtnlgoin">Consumer</button>
+        <button onclick="window.location.href='../index.php'" class="home">Home</button>
+            <button onclick="window.location.href='../admin/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
+            <button onclick="window.location.href='../consumer/Consumer_Page.php'"class="Sbtnlgoin">Consumer</button>
         </nav>
     </header>
 
