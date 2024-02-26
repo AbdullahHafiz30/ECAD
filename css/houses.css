@@ -30,7 +30,7 @@ body.dark {
     margin-bottom: 20px;
     padding: 20px;
     border-left: 6px solid var(--primery-color); /* Green border */
-    transition: border-left 0.1s ease-in-out; /* Smooth transition */
+    transition:0.1s ease-in-out; /* Smooth transition */
 }
 
 .house:hover {
