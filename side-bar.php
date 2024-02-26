@@ -58,8 +58,8 @@
                     </li>
                     <li class="nav-link">
                         <a href="#">
-                            <i onclick="window.location.href='houses.php'" class='bx bx-building-house icons'></i>
-                            <span onclick="window.location.href='houses.php'" class="text nav-text">Houses</span>
+                            <i onclick="window.location.href='../houses.php'" class='bx bx-building-house icons'></i>
+                            <span onclick="window.location.href='../houses.php'" class="text nav-text">Houses</span>
                         </a>
                     </li>
                 </ul>
@@ -67,8 +67,8 @@
             <div class="bottom-content">
                 <li class="">
                     <a href="#">
-                        <i onclick="window.location.href='index.php'" class='bx bx-power-off icons'></i>
-                        <span onclick="window.location.href='index.php'" class="text nav-text">Logout</span>
+                        <i onclick="window.location.href='../index.php'" class='bx bx-power-off icons'></i>
+                        <span onclick="window.location.href='../index.php'" class="text nav-text">Logout</span>
                     </a>
                 </li>
                 <li class="mode">

@@ -1,4 +1,7 @@
 <?php
+include "../navbar.php";
+
+
 $errors = array(); // Initialize $errors as an array
 session_start(); 
 
@@ -18,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     }
 
     if (count($errors) == 0) {
-        include 'DataBase.php'; // Ensure the path is correct
+        include '../DB/DataBase.php'; // Ensure the path is correct
 
         $admin_check_query = "SELECT * FROM admin WHERE Admin_ID=? LIMIT 1";
         $stmt = $conn->prepare($admin_check_query);
@@ -52,19 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="admin-signin.css">
-    <link rel="stylesheet" href="navbar.css">
-    <title>Admin Sign In</title>
+    <link rel="stylesheet" href="../css/admin/admin-signin.css">
+    <title>E.C.A.D Admin Sign In</title>
 </head>
 <body>
-    <header>
-        <div class="mark">E.C.A.D</div>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'" class="home">Home</button>
-            <button onclick="window.location.href='Admin_Page.php'" class="Sbtnlgoin">Admin</button>
-            <button onclick="window.location.href='Consumer_Page.php'" class="Sbtnlgoin">Consumer</button>
-        </nav>
-    </header>
     <div class="Login">
         <form action="" method="POST">
             <h1>Sign in</h1>

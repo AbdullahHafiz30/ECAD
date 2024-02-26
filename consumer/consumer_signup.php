@@ -1,5 +1,7 @@
 <?php
-include 'DataBase.php';
+include '../DB/DataBase.php';
+include "../navbar.php";
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $errors = array(
@@ -142,25 +144,10 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Keywords" content="energy consumption, anomaly detection">
     <title>E.C.A.D Consumer Signup page</title>
-    <link rel="stylesheet" href="consumer-signup.css">
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="../css/consumer/consumer-signup.css">
 </head>
 
 <body>
-    <header>
-        <div class="mark">
-            E.C.A.D
-        </div>
-
-        <nav class="navigation">
-            <button onclick="window.location.href='//localhost/ECAD/index.php'" class="home">Home</button>
-            <button onclick="window.location.href='//localhost/ECAD/Admin_Page.php'" class="Sbtnlgoin">Admin</button>
-
-            <button onclick="window.location.href='//localhost/ECAD/Consumer_Page.php'"
-                class="Sbtnlgoin">Consumer</button>
-        </nav>
-    </header>
-
     <div class="Signup">
         <h1>Consumer Sign Up</h1>
  
@@ -205,7 +192,7 @@ if (isset($_POST['submit'])) {
             </div>
 
             <br><input type="submit" value="Sign Up" name='submit'>
-            <P>Already Signed up? <a href="http://localhost/ECAD/consumer_signin.php">Login here</a></P>
+            <P>Already Signed up? <a href="consumer_signin.php">Login here</a></P>
         </form>
     </div>
 </body>

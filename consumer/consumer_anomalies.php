@@ -1,8 +1,8 @@
 <?php
 $errors = array();
 session_start();
-include 'DataBase.php';
-include 'side-bar.php'; 
+include '../DB/DataBase.php';
+include '../side-bar.php'; 
 
 $anomalyinfo = "SELECT * FROM train WHERE  building_id = 107 AND  AnomalyStatus = 'Confirmed' ";
 $aresult = mysqli_query($conn, $anomalyinfo);

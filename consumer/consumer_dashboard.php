@@ -1,4 +1,10 @@
-<?php include 'side-bar.php'; ?>
+<?php 
+session_start();
+include '../DB/DataBase.php';
+include '../side-bar.php'; 
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +16,6 @@
 </head>
 
 <body>
-    
-
     <section class="home">
         <div class="text">Dashboard</div>
     </section>
