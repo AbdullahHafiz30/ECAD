@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/side_bar.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <script src="JS/sidebar.js" defer></script>
 </head>
 
@@ -14,7 +13,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="images/profile.png" alt="account img">
+                    <img src="../images\profile.png" alt="account img">
                 </span>
 
                 <div class="text header-text">
@@ -30,7 +29,7 @@
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="#">
-                            <i onclick="window.location.href='consumer_dashboard.php'" class='bx bx-home icons'></i>
+                            <i onclick="window.location.href='consumer\consumer_dashboard.php'" class='bx bx-home icons'></i>
                             <span class="text nav-text"
                                 onclick="window.location.href='consumer_dashboard.php'">Dashboard</span>
                         </a>

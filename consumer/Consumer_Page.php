@@ -12,10 +12,10 @@
 
 <body>
         <div class="card-container">
-        <div class="card" onclick="window.location.href='//localhost/ECAD/consumer/consumer_signup.php'">
+        <div class="card" onclick="window.location.href='consumer_signup.php'">
             <h2>Consumer</h2><h2>Sign Up</h2>
                     </div>
-<div class="card" onclick="window.location.href='//localhost/ECAD/consumer/consumer_signin.php'">
+<div class="card" onclick="window.location.href='consumer_signin.php'">
             <h2>Consumer</h2><h2>Sign In</h2>
                     </div>
     </div>
