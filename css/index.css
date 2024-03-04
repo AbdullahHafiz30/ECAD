@@ -1,0 +1,90 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(../images/background.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+:root {
+    --body-color: #e4e9f7;
+    --sidbar-color: #fff;
+    --primery-color: #10870e;
+    --primery-color-light: #f6f5ff;
+    --toggle-color: #ddd;
+    --text-color: #707070;
+    --about-color: #fff;
+
+
+    --tran--02: all 0.2s ease;
+    --tran--03: all 0.3s ease;
+    --tran--04: all 0.4s ease;
+    --tran--05: all 0.5s ease;
+}
+
+.aboutproject{
+    position: relative;
+    width: 1600px;
+    height: 340px;
+    background: transparent;
+    font-family: 'Times New Roman';
+    border: 2px soild rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutproject p{
+    position: relative;
+    text-align: justify;
+    font-size: 30px;
+    color: var(--about-color);
+    text-decoration: none;
+    font-weight: 400;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.slogen{
+    font-size: 20px;
+    font-family: 'Pacifico';
+    align-items: center;
+    white-space: nowrap;
+}
+
+.slogen h1{
+    margin-left: 20px;
+    margin-right: 20px;
+    color: var(--about-color);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.slogen h2{
+    margin-left: 20px;
+    margin-right: 20px;
+    color: var(--about-color);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.slogen h4{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    color: var(--about-color);
+    text-align: center;
+}
+
+td{
+    align-items: center;
+}

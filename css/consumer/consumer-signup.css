@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(../../images/background.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.Signup {
+    background: transparent;
+    backdrop-filter: blur(30px);
+    border: 1px solid lawngreen;
+    width: 900px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    color: aliceblue;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 15px;
+    
+}
+
+form {
+    display: block;
+    margin-top: 1.1rem;
+    margin-left: 1.1rem;
+    margin-right: 1.1rem;
+    margin-bottom: 1.1rem;
+    
+}
+
+form label {
+    display: flex;
+    margin-top: 5px;
+    font-size: 25px;
+}
+
+.inp input {
+    width: 32%;
+    border: none;
+    border: 1px solid lightgreen;
+    border-radius: 6px;
+    outline: none;
+    margin-bottom: 5px;
+}
+
+form input {
+    width: 97%;
+    padding: 7px;
+    border: none;
+    border: 1px solid lightgreen;
+    border-radius: 6px;
+    outline: none
+}
+
+form [type="submit"] {
+    width: 820px;
+    height: 45px;
+    border: none;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+form [type="submit"]:hover {
+    background-color: darkgreen;
+}
+
+p{
+    text-align: center;
+    font-size: 17px;
+    padding-top: 10px;
+}
