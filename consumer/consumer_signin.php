@@ -60,11 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/consumer/consumer-signin.css">
-    <title>Consumer Sign In</title>
+        <title>Consumer Sign In</title>
 </head>
 
 <body>
-
+    
     <div class="Login">
         <form action="consumer_signin.php" method="POST">
             <h1>Sign In</h1>

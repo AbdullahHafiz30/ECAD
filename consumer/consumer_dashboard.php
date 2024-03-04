@@ -16,7 +16,7 @@ include '../side-bar.php';
 </head>
 
 <body>
-    <section class="home">
+        <section class="home">
         <div class="text">Dashboard</div>
     </section>
 </body>

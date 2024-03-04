@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <title>E.C.A.D Admin Sign In</title>
 </head>
 <body>
-    <div class="Login">
+        <div class="Login">
         <form action="" method="POST">
             <h1>Sign in</h1>
 

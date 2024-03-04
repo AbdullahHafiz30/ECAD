@@ -22,7 +22,7 @@ if ($result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/houses.css">
     <title>Houses</title>
-</head>
+    </head>
 <body>
     <section class="home">
         <div class="text">

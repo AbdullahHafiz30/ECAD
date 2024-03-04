@@ -90,11 +90,11 @@ if (isset($_POST['submit'])) {
 <head>
     <meta name="viewreport" content="width=device-width, initial-scale=1.0">
     <meta name="Keywords" content="energy consumption , anomaly detection">
-    <link rel="stylesheet" href="../css/admin/admin-signup.css">
+        <link rel="stylesheet" href="../css/admin/admin-signup.css">
     <title>E.C.A.D Admin Signup page</title>
 </head>
 <body>
-    <div class="Signup">
+        <div class="Signup">
         <h1>Admin Sign Up</h1>
         <form action="admin_signup.php" method="POST">
             <div class="inp">

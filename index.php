@@ -6,13 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../ECAD/css/index.css">
+<link rel="stylesheet" href="../../ECAD/css/index.css">
     <link rel="stylesheet" href="css/navbar.css">
-    <title>E.C.A.D</title>
+        <title>E.C.A.D</title>
 </head>
 
 <body>
-
+    
     <div class="aboutproject">
         <div class="slogen">
             <h1>E.C.A.D</h1>
