@@ -13,9 +13,9 @@
     </div>
 
     <nav class="navigation">
-        <button onclick="window.location.href='//localhost/ECAD/index.php'">Home</button>
-        <button onclick="window.location.href='//localhost/ECAD/admin/Admin_Page.php'">Admin</button>
-        <button onclick="window.location.href='//localhost/ECAD/consumer/Consumer_Page.php'">Consumer</button>
+        <button onclick="window.location.href='../index.php'">Home</button>
+        <button onclick="window.location.href='Admin_Page.php'">Admin</button>
+        <button onclick="window.location.href='Consumer_Page.php'">Consumer</button>
     </nav>
 </header>
 

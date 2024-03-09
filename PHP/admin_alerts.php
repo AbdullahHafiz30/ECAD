@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-include '../side-bar.php';
-include '../DB/DataBase.php';
+include 'side-bar.php';
+include 'DB/DataBase.php';
 
 header("refresh: 5");
 $queryAnomaly = "SELECT * FROM `anomaly`";

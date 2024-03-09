@@ -1,7 +1,7 @@
 <?php
 $errors = array();
 session_start();
-include 'DataBase.php';
+include 'DB/DataBase.php';
 include 'side-bar.php'; 
 
 $anomalyinfo = "SELECT * FROM train WHERE  building_id = 107 AND  AnomalyStatus = 'Pending' ";
@@ -28,8 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="info_card.css">
-    <script src="sidebar.js" defer></script>
+    <link rel="stylesheet" href="../css/info_card.css">
     <title>Admin Confirmation</title>
 </head>
 

@@ -1,10 +1,4 @@
-<?php 
-session_start();
-include '../DB/DataBase.php';
-include '../side-bar.php'; 
-
-
-?>
+<?php include 'side-bar.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,8 +10,10 @@ include '../side-bar.php';
 </head>
 
 <body>
-        <section class="home">
-        <div class="text">Dashboard</div>
+    
+
+    <section class="home">
+        <div class="text">Alerts</div>
     </section>
 </body>
 

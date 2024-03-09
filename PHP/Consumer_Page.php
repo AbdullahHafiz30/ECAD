@@ -1,4 +1,5 @@
-<?php include "../navbar.php"; ?>
+<?php include "navbar.php"; ?>
+    <link rel="stylesheet" href="css/navbar.css">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/card.css">
+    <link rel="stylesheet" href="../css/card.css">
+
     <title>Consumer</title>
 </head>
 

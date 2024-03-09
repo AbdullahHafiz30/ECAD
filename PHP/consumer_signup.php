@@ -1,6 +1,6 @@
 <?php
-include '../DB/DataBase.php';
-include "../navbar.php";
+include 'DB/DataBase.php';
+include "navbar.php";
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
