@@ -4,37 +4,28 @@ session_start();
 include 'DB/DataBase.php';
 include 'side-bar.php';
 
-$sql = "SELECT * FROM train LIMIT 1000";
+// Fetch data from the database
+$sql = "SELECT * FROM train where building_id = 149 LIMIT 100";
 $result = mysqli_query($conn, $sql);
-$data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-// Check if data is empty or not
-if (!$data) {
-    echo "No data retrieved or error occurred.";
+// Check if the query executed successfully
+if (!$result) {
+    echo "Error occurred while fetching data: " . mysqli_error($conn);
 } else {
-    $building_ids_js = '[';
-    $meter_readings_js = '[';
-    $timestamps_js = '[';
-    
-    foreach ($data as $row) {
-        // Append building_id to building_ids_js
-        $building_ids_js .= '"' . $row['building_id'] . '",';
-        // Append meter_reading to meter_readings_js
-        $meter_readings_js .= $row['meter_reading'] . ',';
-        // Append timestamp to timestamps_js
-        $timestamps_js .= '"' . $row['timestamp'] . '",';
+    // Check if data is empty or not
+    if (mysqli_num_rows($result) == 0) {
+        echo "No data retrieved.";
+    } else {
+        $meter_reading = array();
+        $timestamp = array();
+        $anomaly = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $meter_reading[] = $row["meter_reading"];
+            $timestamp[] = $row["timestamp"];
+            $anomaly[] = $row["anomaly"];
+        }
     }
-    
-    // Remove trailing commas
-    $building_ids_js = rtrim($building_ids_js, ',') . ']';
-    $meter_readings_js = rtrim($meter_readings_js, ',') . ']';
-    $timestamps_js = rtrim($timestamps_js, ',') . ']';
-    
 }
-
-$sql = "SELECT * FROM train"; 
-$result = mysqli_query($conn, $sql);
-$train = mysqli_fetch_assoc($result)
 
 ?>
 
@@ -44,62 +35,151 @@ $train = mysqli_fetch_assoc($result)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..\css\admin\admin-dash.css">
+    <link rel="stylesheet" href="..\css\admin\admin-dash1.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
     <title>Admin Dashboard</title>
 </head>
-<body>
-<section class="home">
-    <div class="graph">
-        <canvas id="myChart"></canvas>
-        <canvas id="myChart2"></canvas>
-    </div>
-    
-    <script>
-            // Render chart using Chart.js
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: <?php echo $building_ids_js; ?>,
-                    datasets: [{
-                        label: 'Meter Readings',
-                        data: <?php echo $meter_readings_js; ?>,
-                        borderColor: '#10870e',
-                        tension: 0.1
-                    }]
-                }
-            });
-    </script>
-    <script>
-// Render bar chart using Chart.js
-var ctx = document.getElementById('myChart2').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar', // Change the chart type to 'bar'
-    data: {
-        labels: <?php echo $timestamps_js; ?>,
-        datasets: [{
-            label: 'Meter Readings',
-            data: <?php echo $meter_readings_js; ?>,
-            backgroundColor: '#10870e', // Set background color for bars
-            borderColor: '#10870e',
-            borderWidth: 1, // Set border width for bars
-            barThickness: 5 // Set the thickness of the bars
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true // Start y-axis at zero
-            }
-        }
-    }
-});
 
-    </script>
-<section>
+<body>
+    <section class="home">
+        <div class="chart">
+            <div class="lineChart">
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="barChart">
+                <canvas id="barChart"></canvas>
+            </div>
+
+            <script>
+                const meter_reading = <?php echo json_encode($meter_reading); ?>;
+                const timestamp = <?php echo json_encode($timestamp); ?>;
+                const anomaly = <?php echo json_encode($anomaly); ?>;
+                const pointColors = anomaly.map(a => a == 1 ? 'red' : 'green');
+
+                var data = {
+                    labels: timestamp,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: meter_reading,
+                        borderWidth: 4,
+                        borderColor: '#129c10',
+                        backgroundColor: '#f6f5ff',
+                        borderJoinStyle: 'round',
+                        cubicInterpolationMode: 'monotone',
+                        pointHoverRadius: 6,
+                        pointStyle: 'circle',
+                        pointRadius: 1,
+                        spanGaps: true,
+                        pointBackgroundColor: pointColors,
+                        pointBorderColor: pointColors
+                    }]
+                };
+
+                var config = {
+                    type: 'line',
+                    alignToPixels: true,
+                    data,
+                    options: {
+                        
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        transitions: {
+                            show: {
+                                animations: {
+                                    x: {
+                                        from: 0
+                                    },
+                                    y: {
+                                        from: 0
+                                    }
+                                }
+                            },
+                            hide: {
+                                animations: {
+                                    x: {
+                                        to: 0
+                                    },
+                                    y: {
+                                        to: 0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+
+                var myChart = new Chart(
+                    document.getElementById('lineChart'),
+                    config
+                );
+
+                var data = {
+                    labels: timestamp,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: meter_reading,
+                        borderWidth: 4,
+                        borderColor: '#129c10',
+                        backgroundColor: '#ffffff',
+                        borderJoinStyle: 'round',
+                        cubicInterpolationMode: 'monotone',
+                        pointHoverRadius: 6,
+                        pointStyle: 'circle',
+                        pointRadius: 1,
+                        spanGaps: true,
+                        pointBackgroundColor: pointColors,
+                        pointBorderColor: pointColors
+                    }]
+                };
+
+                var config = {
+                    type: 'bar',
+                    data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        transitions: {
+                            show: {
+                                animations: {
+                                    x: {
+                                        from: 0
+                                    },
+                                    y: {
+                                        from: 0
+                                    }
+                                }
+                            },
+                            hide: {
+                                animations: {
+                                    x: {
+                                        to: 0
+                                    },
+                                    y: {
+                                        to: 0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+
+                var myChart = new Chart(
+                    document.getElementById('barChart'),
+                    config
+                );
+            </script>
+
+        </div>
+
+        <section>
 
 </body>
 

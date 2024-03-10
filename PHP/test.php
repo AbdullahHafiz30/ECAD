@@ -2,7 +2,7 @@
 include 'DB\DataBase.php';
 
 // Fetch data from the database
-$sql = "SELECT * FROM train LIMIT 10";
+$sql = "SELECT * FROM train where building_id = 149 LIMIT 50";
 $result = mysqli_query($conn, $sql);
 
 // Check if the query executed successfully
@@ -13,11 +13,13 @@ if (!$result) {
     if (mysqli_num_rows($result) == 0) {
         echo "No data retrieved.";
     } else {
-        $building_id = array();
+        $meter_reading = array();
         $timestamp = array();
+        $anomaly = array();
         while ($row = mysqli_fetch_assoc($result)) {
-            $building_id[] = $row["building_id"];
+            $meter_reading[] = $row["meter_reading"];
             $timestamp[] = $row["timestamp"];
+            $anomaly[] = $row["anomaly"];
         }
         
     }
@@ -27,19 +29,19 @@ if (!$result) {
 mysqli_close($conn);
 
 //     // Initialize JavaScript array strings
-//     $building_ids_js = '[';
+//     $meter_readings_js = '[';
 //     $meter_readings_js = '[';
 
 //     // Loop through the data and construct JavaScript arrays
 //     foreach ($data as $row) {
-//         // Append building_id to building_ids_js
-//         $building_ids_js .= $row['building_id'] . ',';
+//         // Append meter_reading to meter_readings_js
+//         $meter_readings_js .= $row['meter_reading'] . ',';
 //         // Append meter_reading to meter_readings_js
 //         $meter_readings_js .= $row['meter_reading'] . ',';
 //     }
 
 //     // Remove trailing commas
-//     $building_ids_js = rtrim($building_ids_js, ',') . ']';
+//     $meter_readings_js = rtrim($meter_readings_js, ',') . ']';
 //     $meter_readings_js = rtrim($meter_readings_js, ',') . ']';
 // 
 ?>
@@ -55,35 +57,69 @@ mysqli_close($conn);
 <body>
     <style>
         div{
-            height: 600px;
-            width: 600px;
+            height: 700px;
+            width: 700px;
         }
     </style>
     <h1>Data Visualization</h1>
-    <div>
+    <div class = "linegraph">
         <canvas id="myChart"></canvas>
     </div>
-<style></style>
 <script>
-    const building_id = <?php echo json_encode($building_id);?>;
+    const meter_reading = <?php echo json_encode($meter_reading);?>;
     const timestamp = <?php echo json_encode($timestamp);?>;
+    const anomaly = <?php echo json_encode($anomaly);?>;
+    const pointColors = anomaly.map(data => data == 1 ? 'red' : 'green');
+
     const data = {
-        labels: building_id,
+        labels: timestamp,
             datasets: [{
                 label: '# of Votes',
-                data: building_id,
-                borderWidth: 1
+                data: meter_reading,
+                borderWidth: 4,
+                borderColor: '#10870e',
+                backgroundColor: '#f6f5ff',
+                borderJoinStyle: 'round',
+                cubicInterpolationMode: 'monotone',
+                pointHoverRadius: 6,
+                pointStyle: 'circle',
+                pointRadius: 1,
+                spanGaps: true,
+                pointBackgroundColor: pointColors,
+                pointBorderColor: pointColors
             }]
     };
 
     const config = {
-        type: 'bar',
+        type: 'line',
         data,
         options: {
             scales: {
                 y: {
                     beginAtZero: true
                 }
+            },
+            transitions: {
+            show: {
+                animations: {
+                x: {
+                    from: 0
+                },
+                y: {
+                    from: 0
+                }
+                }
+            },
+            hide: {
+                animations: {
+                x: {
+                    to: 0
+                },
+                y: {
+                    to: 0
+                }
+                }
+            }
             }
         }
     };
