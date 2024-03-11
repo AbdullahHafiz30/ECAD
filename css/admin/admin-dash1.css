@@ -1,0 +1,62 @@
+:root {
+    --body-color: #e4e9f7;
+    --sidbar-color: #fff;
+    --primery-color: #10870e;
+    --primery-color-light: #f6f5ff;
+    --toggle-color: #ddd;
+    --text-color: #707070;
+
+
+    --tran--02: all 0.2s ease;
+    --tran--03: all 0.3s ease;
+    --tran--04: all 0.4s ease;
+    --tran--05: all 0.5s ease;
+}
+
+body.dark {
+    --body-color: #18191a;
+    --sidbar-color: #242526;
+    --primery-color: #4CAF50;
+    --primery-color-light: #3a3b3c;
+    --toggle-color: #ddd;
+    --text-color: #ccc;
+}
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Ensure content starts from the top */
+    position: relative;
+    padding: 20px; /* Added some padding */
+    left: 250px; /* Adjust if you have a sidebar, remove if not */
+    padding-bottom: 50px; /* Extra space at the bottom */
+}
+.chart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 30px; /* Space between charts and the table */
+
+}
+
+/* Styles for individual chart containers */
+.chart .lineChart, 
+.chart .barChart {
+    flex: 1;
+    min-width: 300px; /* Minimum width before wrapping */
+    max-width: 900px; /* Maximum width for larger screens */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: var(--sidbar-color);
+
+}
+
+/* Ensure canvas elements are responsive */
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
