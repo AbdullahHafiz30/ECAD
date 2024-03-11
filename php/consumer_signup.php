@@ -1,5 +1,5 @@
 <?php
-include '../DB/DataBase.php';
+include 'DB/DataBase.php';
 include "navbar.php";
 
 error_reporting(E_ALL);
@@ -145,10 +145,10 @@ if (isset($_POST['submit'])) {
     <meta name="Keywords" content="energy consumption, anomaly detection">
     <title>E.C.A.D Consumer Signup page</title>
     <link rel="stylesheet" href="../css/consumer/consumer-signup.css">
-</head>
+    </head>
 
 <body>
-    <div class="Signup">
+        <div class="Signup">
         <h1>Consumer Sign Up</h1>
  
         <form action="consumer_signup.php" method="POST">

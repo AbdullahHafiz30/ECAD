@@ -1,4 +1,5 @@
 <?php
+include 'DB/DataBase.php'; // Ensure the path is correct
 include "navbar.php";
 
 
@@ -21,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     }
 
     if (count($errors) == 0) {
-        include '../DB/DataBase.php'; // Ensure the path is correct
 
         $admin_check_query = "SELECT * FROM admin WHERE Admin_ID=? LIMIT 1";
         $stmt = $conn->prepare($admin_check_query);
@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
             if (password_verify($apassword, $stored_password)) {
                 $_SESSION['Admin_ID'] = $Admin_ID;
+                $_SESSION['email'] = $admin_row['email'];
                 header("Location: admin_dashboard.php");
                 exit();
             } else {
@@ -59,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <title>E.C.A.D Admin Sign In</title>
 </head>
 <body>
-    <div class="Login">
+        <div class="Login">
         <form action="" method="POST">
             <h1>Sign in</h1>
 

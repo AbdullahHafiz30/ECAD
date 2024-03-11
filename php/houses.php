@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include '../DB/DataBase.php';
+include 'DB/DataBase.php';
 include 'side-bar.php';
 // Fetch and display houses from the database
 $Email = $_SESSION['email'] ;
@@ -20,9 +20,10 @@ if ($result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/houses.css">
+    <link rel="stylesheet" href="css/houses.css">
+    <link rel="stylesheet" href="css\side_bar.css">
     <title>Houses</title>
-</head>
+    </head>
 <body>
     <section class="home">
         <div class="text">

@@ -1,4 +1,5 @@
 <?php include "navbar.php"; ?>
+    <link rel="stylesheet" href="css/navbar.css">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,17 +8,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/card.css">
+
     <title>Consumer</title>
 </head>
 
 <body>
-    <div class="card-container">
-        <div class="card" onclick="window.location.href='//localhost/ECAD/php/consumer_signup.php'">
+        <div class="card-container">
+        <div class="card" onclick="window.location.href='consumer_signup.php'">
             <h2>Consumer</h2><h2>Sign Up</h2>
-        </div>
-        <div class="card" onclick="window.location.href='//localhost/ECAD/php/consumer_signin.php'">
+                    </div>
+<div class="card" onclick="window.location.href='consumer_signin.php'">
             <h2>Consumer</h2><h2>Sign In</h2>
-        </div>
+                    </div>
     </div>
 </body>
 

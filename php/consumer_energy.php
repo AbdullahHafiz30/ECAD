@@ -1,10 +1,4 @@
-<?php 
-session_start();
-include 'side-bar.php'; 
-
-
-
-?>
+<?php include 'side-bar.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +6,6 @@ include 'side-bar.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <script src="sidebar.js" defer></script>
     <title>Consumer Dashboard</title>
 </head>
 
