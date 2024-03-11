@@ -2,7 +2,7 @@
 $errors = array();
 session_start();
 include 'DB/DataBase.php';
-include 'side-bar.php';
+include 'admin_side-bar.php';
 
 // Fetch data from the database
 $sql = "SELECT * FROM train where building_id = 149 LIMIT 100";

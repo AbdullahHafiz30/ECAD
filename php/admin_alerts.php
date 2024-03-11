@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include 'side-bar.php';
+include 'admin_side-bar.php';
 include 'DB/DataBase.php';
 
 header("refresh: 5");

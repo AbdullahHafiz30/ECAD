@@ -32,45 +32,41 @@
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="admin_dashboard.php">
-                            <i onclick="window.location.href='consumer_dashboard.php'" class='bx bx-home icons'></i>
-                            <span class="text nav-text"
-                                onclick="window.location.href='consumer_dashboard.php'">Dashboard</span>
+                            <i class='bx bx-home icons'></i>
+                            <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="admin_alerts.php">
-                            <i onclick="window.location.href='admin_alerts.php'" class='bx bx-bell icons'></i>
-                            <span onclick="window.location.href='admin_alerts.php'"
-                                class="text nav-text">Alerts</span>
+                            <i class='bx bx-bell icons'></i>
+                            <span class="text nav-text">Alerts</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="consumer_energy.php">
-                            <i onclick="window.location.href='consumer_energy.php'" class='bx bx-bolt-circle icons'></i>
-                            <span class="text nav-text" onclick="window.location.href='consumer_energy.php'">Energy
-                                Consumption</span>
+                            <i class='bx bx-bolt-circle icons'></i>
+                            <span class="text nav-text">Energy Consumption</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="consumer_anomalies.php">
-                            <i onclick="window.location.href='consumer_anomalies.php'" class='bx bx-stats icons'></i>
-                            <span onclick="window.location.href='consumer_anomalies.php'"
-                                class="text nav-text">Anomalies</span>
+                            <i class='bx bx-stats icons'></i>
+                            <span class="text nav-text">Anomalies</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="houses.php">
-                            <i onclick="window.location.href='houses.php'" class='bx bx-building-house icons'></i>
-                            <span onclick="window.location.href='houses.php'" class="text nav-text">Houses</span>
+                            <i class='bx bx-building-house icons'></i>
+                            <span class="text nav-text">Houses</span>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="bottom-content">
                 <li class="">
-                    <a href="index.php">
-                        <i onclick="window.location.href='index.php'" class='bx bx-power-off icons'></i>
-                        <span onclick="window.location.href='index.php'" class="text nav-text">Logout</span>
+                    <a href="../index.php">
+                        <i class='bx bx-power-off icons'></i>
+                        <span class="text nav-text">Logout</span>
                     </a>
                 </li>
                 <li class="mode">
