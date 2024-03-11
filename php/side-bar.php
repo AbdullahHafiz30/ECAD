@@ -3,10 +3,10 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/side_bar.css">
+    <link rel="stylesheet" href="../css/side_bar.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <script src="JS/sidebar.js" defer></script>
+    <script src="../JS/sidebar.js" defer></script>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="images/profile.png" alt="account img">
+                    <img src="../images/profile.png" alt="account img">
                 </span>
 
                 <div class="text header-text">
@@ -58,8 +58,8 @@
                     </li>
                     <li class="nav-link">
                         <a href="#">
-                            <i onclick="window.location.href='../houses.php'" class='bx bx-building-house icons'></i>
-                            <span onclick="window.location.href='../houses.php'" class="text nav-text">Houses</span>
+                            <i onclick="window.location.href='houses.php'" class='bx bx-building-house icons'></i>
+                            <span onclick="window.location.href='houses.php'" class="text nav-text">Houses</span>
                         </a>
                     </li>
                 </ul>

@@ -1,5 +1,5 @@
 <?php
-include "../navbar.php";
+include "navbar.php";
 
 
 $errors = array(); // Initialize $errors as an array

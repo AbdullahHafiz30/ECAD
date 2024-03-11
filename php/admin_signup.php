@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../DB/DataBase.php';
-include "../navbar.php";
+include "navbar.php";
 
 $errors = array(
     'name' => '', // Consolidated error message for all name fields

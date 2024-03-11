@@ -1,4 +1,4 @@
-<?php include "../navbar.php"; ?>
+<?php include "navbar.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,14 +14,14 @@
 
     <div class="card-container">
         <!-- Admin Signup Card -->
-        <div class="card" onclick="window.location.href='//localhost/ECAD/admin/admin_signup.php'">
+        <div class="card" onclick="window.location.href='//localhost/ECAD/php/admin_signup.php'">
             <h2>Admin</h2>
             <h2>Sign Up</h2>
             <!-- Add your signup form here -->
         </div>
 
         <!-- Admin Login Card -->
-        <div class="card" onclick="window.location.href='//localhost/ECAD/admin/admin_signin.php'">
+        <div class="card" onclick="window.location.href='//localhost/ECAD/php/admin_signin.php'">
             <h2>Admin</h2>
             <h2>Sign In</h2>
             <!-- Add your login form here -->
