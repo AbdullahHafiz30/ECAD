@@ -38,9 +38,9 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="consumer_alerts.php">
-                            <i onclick="window.location.href='consumer_alerts.php'" class='bx bx-bell icons'></i>
-                            <span onclick="window.location.href='consumer_alerts.php'"
+                        <a href="admin_alerts.php">
+                            <i onclick="window.location.href='admin_alerts.php'" class='bx bx-bell icons'></i>
+                            <span onclick="window.location.href='admin_alerts.php'"
                                 class="text nav-text">Alerts</span>
                         </a>
                     </li>
