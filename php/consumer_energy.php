@@ -1,4 +1,4 @@
-<?php include 'consumer_side-bar.php'; ?>
+<?php include 'side-bar.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

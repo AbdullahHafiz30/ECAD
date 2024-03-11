@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include 'DB/DataBase.php';
-include 'consumer_side-bar.php'; 
+include 'side-bar.php'; 
 
 
 ?>

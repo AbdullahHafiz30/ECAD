@@ -2,7 +2,7 @@
 $errors = array();
 session_start();
 include 'DB/DataBase.php';
-include 'consumer_side-bar.php'; 
+include 'side-bar.php'; 
 
 $anomalyinfo = "SELECT * FROM train WHERE  building_id = 107 AND  AnomalyStatus = 'Confirmed' ";
 $aresult = mysqli_query($conn, $anomalyinfo);

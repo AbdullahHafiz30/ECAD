@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "ecad";
+$dbname = "ecadt";
 
 $conn =  mysqli_connect($servername, $username, $password, $dbname);
 
