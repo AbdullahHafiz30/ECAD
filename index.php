@@ -1,4 +1,3 @@
-<?php ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +34,7 @@
             harum eum deleniti consectetur similique corporis a hic, qui dicta provident sint blanditiis sunt quo
             consequatur. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor fugit ipsam saepe. Eum debitis
             eligendi facilis doloribus voluptatem sit. Quae veritatis doloremque ducimus optio provident maxime fugit
-            vero nostrum dolorxc.
+            vero nostrum dolor.
         </p>
     </div>
 </body>
