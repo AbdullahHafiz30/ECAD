@@ -32,9 +32,9 @@
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="admin_dashboard.php">
-                            <i onclick="window.location.href='admin_dashboard.php'" class='bx bx-home icons'></i>
+                            <i onclick="window.location.href='consumer_dashboard.php'" class='bx bx-home icons'></i>
                             <span class="text nav-text"
-                                onclick="window.location.href='admin_dashboard.php'">Dashboard</span>
+                                onclick="window.location.href='consumer_dashboard.php'">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link">

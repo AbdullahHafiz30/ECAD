@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     }
 
     if (empty($errors)) {
-        include '../DB/DataBase.php';  // Consider a relative path
+        include 'DB/DataBase.php';  // Consider a relative path
 
         // Prepared statement recommended here for security
         $consumer_check_query = "SELECT * FROM consumer WHERE Email=? LIMIT 1";

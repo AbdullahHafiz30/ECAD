@@ -254,11 +254,20 @@ body.dark .switch::before {
 
 .home {
 
-    min-height: 100vh;  
+    position: relative;
+    height: 100svh;
+    left: 250px;
     width: calc(100% - 250px);
-
     background: var(--body-color);
     transition: var(--tran--05);
+
+}
+
+.home .text {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 8px 40px;
 
 }
 
