@@ -34,7 +34,11 @@
             harum eum deleniti consectetur similique corporis a hic, qui dicta provident sint blanditiis sunt quo
             consequatur. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor fugit ipsam saepe. Eum debitis
             eligendi facilis doloribus voluptatem sit. Quae veritatis doloremque ducimus optio provident maxime fugit
+<<<<<<< HEAD
             vero nostrum dolor.
+=======
+            vero nostrum dolorxffc.
+>>>>>>> hafiz
         </p>
     </div>
 </body>
