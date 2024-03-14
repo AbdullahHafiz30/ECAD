@@ -5,6 +5,7 @@
     --primery-color-light: #f6f5ff;
     --toggle-color: #ddd;
     --text-color: #707070;
+    --btn-color: #b0b0b0;
 
 
     --tran--02: all 0.2s ease;
@@ -20,16 +21,99 @@ body.dark {
     --primery-color-light: #3a3b3c;
     --toggle-color: #ddd;
     --text-color: #ccc;
+    --btn-color: #696969;
+
 }
 .home{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start; /* Align items at the start (left side) */
     justify-content: flex-start; /* Ensure content starts from the top */
     position: relative;
     padding: 20px; /* Added some padding */
     left: 250px; /* Adjust if you have a sidebar, remove if not */
     padding-bottom: 50px; /* Extra space at the bottom */
+}
+/* General styling for the select container for alignment and spacing */
+.dropdown{
+    width: 120px;
+    position: relative;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown *{
+    box-sizing: border-box;
+}
+.select{
+    background: var(--sidbar-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.3s ;
+}
+.select-clicked{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.select:hover{
+    background: var(--btn-color) ;
+}
+
+.caret{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--primery-color);
+    transition: 0.3s ;
+}
+
+.caret-rotate{
+    transform: rotate(180deg);
+}
+.intervalMenu{
+    list-style: none;
+    background-color: var(--sidbar-color);
+    padding: 3px 8px;
+    margin-top: 1px;
+    border: 1px var(--primery-color) solid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    color: var(--text-color);
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+.intervalMenu li{
+    padding: 11px 8px;
+    margin: 5px 0;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+
+.intervalMenu li:hover{
+    background: var(--primery-color);
+    color: var(--sidbar-color);
+}
+.active{
+    background: var(--primery-color);
+    color: var(--sidbar-color);
+}
+.intervalMenu-open{
+    display: block;
+    opacity: 1;
+
 }
 .chart {
     display: flex;
